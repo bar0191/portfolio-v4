@@ -1,7 +1,24 @@
 /* styles.scss */
 
 // Global files
+@import 'global/fonts';
 @import 'global/resets';
 @import 'global/rem';
 @import 'global/variables';
 @import 'global/base';
+
+// page files
+@import 'pages/home';
+@import 'pages/about';
+
+// component files
+@import 'components/slider';
+@import 'components/grid';
+@import 'components/cursor';
+@import 'components/hamburger';
+@import 'components/mouse';
+@import 'components/landing';
+@import 'components/logo';
+@import 'components/about';
+@import 'components/nav';
+@import 'components/page';

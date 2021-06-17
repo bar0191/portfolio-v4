@@ -1,0 +1,48 @@
+import * as React from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import { useRecoilValue } from 'recoil';
+import { menuOpen } from '../store';
+import NavItem from './NavItem';
+
+const variants = {
+  center: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.2,
+    }
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    }
+  }
+};
+
+function Nav(): JSX.Element {
+  const open = useRecoilValue(menuOpen);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.nav
+          initial="enter"
+          animate="center"
+          exit="exit"
+          className="nav"
+        >
+          <motion.ul className="nav__list" variants={variants}>
+            <NavItem />
+            <NavItem />
+            <NavItem />
+            <NavItem />
+          </motion.ul>
+        </motion.nav>
+      )}
+
+    </AnimatePresence>
+
+  );
+}
+
+export default Nav;

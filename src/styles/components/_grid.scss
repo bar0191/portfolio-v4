@@ -1,0 +1,81 @@
+.grid {
+  &__shadow {
+    content: '';
+    display: block;
+    height: 10vh;
+    width: 100%;
+    position: fixed;
+    z-index: 4;
+    left: 0;
+    transition: all 0.8s;
+
+    &.top {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 80%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    &.bottom {
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 80%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
+  &__line-hr,
+  &__line-vr {
+    position: fixed;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &__line-hr {
+    width: 100vw;
+    height: 1px;
+
+    &.top {
+      top: 25%;
+      left: 0;
+    }
+
+    &.mid {
+      top: 50%;
+      left: 0;
+    }
+
+    &.bottom {
+      top: 75%;
+      left: 0;
+    }
+  }
+
+  &__line-vr {
+    height: 100vh;
+    width: 1px;
+
+    &.left {
+      top: 0;
+      left: 25%;
+
+      @media screen and (max-width: 680px) {
+        top: 0;
+        left: 20px;
+      }
+    }
+
+    &.mid {
+      top: 0;
+      left: 50%;
+    }
+
+    &.right {
+      top: 0;
+      left: 75%;
+      margin-left: -1px;
+
+      @media screen and (max-width: 680px) {
+        left: auto;
+        right: 20px;
+        margin-left: -1px;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+/* Cursor */
+#cursor {
+  top: 0;
+  left: 0;
+  position: fixed;
+  pointer-events: none;
+  will-change: transform;
+  mix-blend-mode: difference;
+  transition: transform 0.05s linear;
+  z-index: 99;
+}
+
+.cursor {
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  position: fixed;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 1);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: opacity 0.15s ease-in-out;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 99;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor-circle {
+    width: 64px;
+    height: 64px;
+    margin-top: -50%;
+    margin-left: -50%;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    border: solid 1px rgba(255, 255, 255, 1);
+    transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  #cursor.arrow .cursor-circle {
+    width: 128px;
+    height: 128px;
+    background-color: #333;
+    border-color: #f3f3f3;
+  }
+
+  #cursor.arrow::after {
+    content: '';
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://alien.haldenvgs.net/images/cursor.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #cursor.subtle .cursor-circle {
+    opacity: 0.16;
+  }
+
+  #cursor.overlay .cursor-circle {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(227, 222, 193, 0.08);
+    border-color: transparent;
+  }
+}

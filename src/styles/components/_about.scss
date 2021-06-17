@@ -1,0 +1,23 @@
+.about {
+  &__h1 {
+    font-family: NeutralFace, "sans-serif";
+    font-size: 4vw;
+    color: white;
+    line-height: 1;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    letter-spacing: 1px;
+  }
+
+  &__label {
+    display: flex;
+    align-items: flex-end;
+    height: 66px;
+    padding-top: 4px;
+    overflow: hidden;
+  }
+}
