@@ -1,19 +1,50 @@
 import * as React from 'react';
 import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { isLanding, menuOpen, pageRendered } from '../store';
 import SubtextSlider from '../components/SubtextSlider';
 import Headline from '../components/Headline';
 import Link from '../components/Link';
 
-const headlineVariants = {
+const lineVariants = {
   enter: {
-
+    y: 15,
+    opacity: 0,
   },
-
+  center: {
+   y: 0,
+   opacity: 1,
+  },
+  exit: {
+    y: -15,
+    opacity: 0,
+  }
 }
 
+const countVariants = {
+  enter: {
+    y: 20,
+    opacity: 0,
+    transition: {
+      delay: 0.2,
+    }
+  },
+  center: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: 0.2,
+    }
+  },
+  exit: {
+    y: -20,
+    opacity: 0,
+    transition: {
+      delay: 0.2,
+    }
+  }
+}
 
 function About(): JSX.Element {
   const setRendered = useSetRecoilState(pageRendered);
@@ -56,52 +87,124 @@ function About(): JSX.Element {
             </section>
             <section className="page__section">
               <div className="page__paragraph about__paragraph">
-                <h3 className="page__cell">
+                <motion.h3
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  variants={lineVariants}
+                  className="page__cell"
+                >
                   Who am I
-                </h3>
-                <p className="page__cell about__me">
+                </motion.h3>
+                <motion.p
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  variants={lineVariants}
+                  className="page__cell about__me"
+                >
                   A jack of all trades, specializing in modern web app and creative development based
                   out of Richmond, Virginia. With a passion in all things aesthetically pleasing. I focus
                   on cutting edge digital paradigms with rich motion, visual, and web experiences.
                   <Link href="/work" label="Work" swap={false} page />
-                </p>
+                </motion.p>
               </div>
             </section>
             <section className="page__section" style={{ marginTop: 200 }}>
               <div className="page__paragraph flexed">
                 <div className="page__cell">
-                  <div className="page__tag">Coding Languages</div>
-                  <div className="page__count">5</div>
+                  <motion.div
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={lineVariants}
+                    className="page__tag"
+                  >
+                    Coding Languages
+                  </motion.div>
+                  <motion.div
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={countVariants}
+                    className="page__count"
+                  >
+                    5
+                  </motion.div>
                 </div>
                 <div className="page__cell">
-                  <div className="page__tag">Years of Experience</div>
-                  <div className="page__count">6</div>
+                  <motion.div
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={lineVariants}
+                    className="page__tag"
+                  >
+                    Years of Experience
+                  </motion.div>
+                  <motion.div
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={countVariants}
+                    className="page__count"
+                  >
+                    6
+                  </motion.div>
                 </div>
               </div>
             </section>
             <section className="page__section">
               <div className="page__paragraph flexed">
                 <div className="page__cell">
-                  <div className="page__tag">Frontend</div>
-                  <ul className="page__list">
+                  <motion.div
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={lineVariants}
+                    className="page__tag"
+                  >
+                    Frontend
+                  </motion.div>
+                  <motion.ul
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={countVariants}
+                    className="page__list"
+                  >
                     <li>Javascript</li>
                     <li>React</li>
                     <li>WebGL</li>
                     <li>ThreeJS</li>
                     <li>Mapbox</li>
                     <li>HTML & CSS</li>
-                  </ul>
+                  </motion.ul>
                 </div>
                 <div className="page__cell">
-                  <div className="page__tag">Backend</div>
-                  <ul className="page__list">
+                  <motion.div
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={lineVariants}
+                    className="page__tag"
+                  >
+                    Backend
+                  </motion.div>
+                  <motion.ul
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    variants={countVariants}
+                    className="page__list"
+                  >
                     <li>Ruby on Rails</li>
                     <li>Python Django</li>
                     <li>PostgreSQL</li>
                     <li>NoSQL</li>
                     <li>Elastic Search</li>
                     <li>Security</li>
-                  </ul>
+                  </motion.ul>
                 </div>
               </div>
             </section>
