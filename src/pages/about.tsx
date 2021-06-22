@@ -83,7 +83,7 @@ function About(): JSX.Element {
               />
             </section>
             <section className="page__image-placeholder">
-              <img alt='silence you fool' className='gl-about-scene' />
+              <img src="https://source.unsplash.com/71SHXwBLp5w/1920x1080" alt='silence you fool' className='gl-about-scene' />
             </section>
             <section className="page__section">
               <div className="page__paragraph about__paragraph">

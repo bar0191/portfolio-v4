@@ -32,10 +32,10 @@ function Nav(): JSX.Element {
           className="nav"
         >
           <motion.ul className="nav__list" variants={variants}>
-            <NavItem />
-            <NavItem />
-            <NavItem />
-            <NavItem />
+            <NavItem href='/' label='Home' />
+            <NavItem href='/about' label='About' />
+            <NavItem href='/work' label='Work' />
+            <NavItem href='/contact' label='Contact' />
           </motion.ul>
         </motion.nav>
       )}

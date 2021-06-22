@@ -21,6 +21,7 @@
     "classnames": "^2.2.6",
     "concurrently": "^6.2.0",
     "dat.gui": "^0.7.7",
+    "debounce": "^1.2.1",
     "framer-motion": "^4.1.17",
     "glslify-loader": "^2.0.0",
     "next": "10.2.3",
@@ -36,6 +37,7 @@
     "three": "^0.129.0"
   },
   "devDependencies": {
+    "@types/debounce": "^1.2.0",
     "@types/node": "^15.6.1",
     "@types/normalize-wheel": "^1.0.0",
     "@types/react": "17.0.8",

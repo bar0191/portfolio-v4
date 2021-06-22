@@ -1,5 +1,8 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { motion } from "framer-motion";
+import { useSetRecoilState } from 'recoil';
+import { menuOpen } from '../store';
 
 const variants = {
   enter: {
@@ -20,13 +23,17 @@ const variants = {
 };
 
 function NavItem({ href, label }): JSX.Element {
+  const setOpen = useSetRecoilState(menuOpen);
 
   return (
     <motion.li
       className="nav__item"
       variants={variants}
+      onClick={() => setOpen(false)}
     >
-      test
+      <Link href={href}>
+        {label}
+      </Link>
     </motion.li>
   );
 }

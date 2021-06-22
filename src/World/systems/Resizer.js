@@ -1,5 +1,5 @@
 class Resizer {
-  constructor(container, camera, renderer) {
+  constructor(container, camera, renderer, updatables) {
     // set initial size on load
     this.setSize(container, camera, renderer);
 
@@ -7,12 +7,12 @@ class Resizer {
       // set the size again if a resize occurs
       this.setSize(container, camera, renderer);
       // perform any custom actions
-      this.onResize();
+      this.onResize(updatables);
     });
   }
 
   setSize = (container, camera, renderer) => {
-    // Set the camera's aspect ratio
+    // set camera aspect ratio
     camera.aspect = container.clientWidth / container.clientHeight;
 
     // update the camera's frustum
@@ -20,12 +20,13 @@ class Resizer {
 
     // update the size of the renderer AND the canvas
     renderer.setSize(container.clientWidth, container.clientHeight);
-
-    // set the pixel ratio (for mobile devices)
-    renderer.setPixelRatio(window.devicePixelRatio);
   };
 
-  onResize() {}
+  onResize = (updatables) => {
+    updatables.forEach((item) => {
+      item.resize();
+    })
+  }
 }
 
 export { Resizer };

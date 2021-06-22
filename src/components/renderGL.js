@@ -26,6 +26,13 @@ async function renderAbout() {
   await controller.initPlane(el);
 }
 
+// async function to render about page scenes
+async function renderSlides() {
+  const els = document.querySelectorAll('.gl-slide-scene');
+
+  await controller.initSlides(els);
+}
+
 // main middleware function for connecting react to threejs modules
 function renderGL({ router }) {
   const [loaded, setLoaded] = useRecoilState(isGlLoaded);
@@ -50,6 +57,12 @@ function renderGL({ router }) {
     if (rendered) {
       const { page } = rendered;
       switch (page) {
+        case 'home':
+          if (zoomed) {
+            controller.rayZoomOut();
+            setZoomed(false);
+          }
+          break;
         case 'about':
           renderAbout()
             .then(() => isLoaded(true))
@@ -60,6 +73,13 @@ function renderGL({ router }) {
           }
           break;
         case 'work':
+          renderSlides()
+            .then(() => isLoaded(true))
+            .catch((e) => console.log(e));
+          if (!zoomed) {
+            controller.rayZoomIn();
+            setZoomed(true);
+          }
           break;
         default:
           // silence

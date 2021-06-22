@@ -51,7 +51,6 @@ class Ray {
 
     this.mouseEvent();
     this.resize();
-    this.setupResize();
   }
 
   onZoom() {
@@ -107,8 +106,6 @@ class Ray {
     // this.material.uniforms.mouse.value = this.mouse;
   }
 
-  ///////////////////////////////
-  // mouse event
   mouseEvent() {
     this.mouse = new Vector2();
 
@@ -125,11 +122,8 @@ class Ray {
 
     window.addEventListener("mousemove", onMouseMove, false);
   }
-  // end of mouse event
-  ///////////////////////////////
 
-  ///////////////////////////////
-  // resize
+
   resize() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -167,10 +161,6 @@ class Ray {
     return this.container.getBoundingClientRect();
   }
 
-  setupResize() {
-    window.addEventListener("resize", this.resize.bind(this));
-  }
-
   stop() {
     this.isPlaying = false;
   }
@@ -182,13 +172,13 @@ class Ray {
   }
 
   tick() {
-    if (!this.isPlaying) return;
-    this.time += 0.05;
-    this.material.uniforms.sinValue.value = this.settings.sinValue;
-    this.material.uniforms.sinMultiplier.value = this.settings.sinMultiplier;
-    this.material.uniforms.rotationSpeed.value = this.settings.rotationSpeed;
-    this.material.uniforms.uScale.value = this.settings.uScale;
-    this.material.uniforms.time.value = this.time;
+    // if (!this.isPlaying) return;
+    // this.time += 0.05;
+    // this.material.uniforms.sinValue.value = this.settings.sinValue;
+    // this.material.uniforms.sinMultiplier.value = this.settings.sinMultiplier;
+    // this.material.uniforms.rotationSpeed.value = this.settings.rotationSpeed;
+    // this.material.uniforms.uScale.value = this.settings.uScale;
+    // this.material.uniforms.time.value = this.time;
   }
 }
 

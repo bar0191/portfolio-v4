@@ -12,9 +12,11 @@ function Home(): JSX.Element {
     width: 0,
   });
 
+  setRendered({ page: 'home', seed: Math.random() });
+
   useEffect(() => {
     setState({ height: window.innerHeight, width: window.innerWidth });
-    setRendered({ page: 'home', seed: Math.random() });
+    // setRendered({ page: 'home', seed: Math.random() });
   }, []);
 
   return (

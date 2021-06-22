@@ -3,6 +3,12 @@ import { Clock } from 'three';
 const clock = new Clock();
 
 class Loop {
+  container;
+  camera;
+  scene;
+  renderer;
+  updatables;
+
   constructor(camera, scene, renderer, container) {
     this.container = container;
     this.camera = camera;
@@ -12,10 +18,7 @@ class Loop {
   }
 
   start() {
-    this.renderer.setAnimationLoop(() => {
-      // tell every animated object to tick forward one frame
-      this.tick();
-    });
+    this.renderer.setAnimationLoop(() => this.tick());
   }
 
   stop() {
@@ -28,10 +31,9 @@ class Loop {
     const time = clock.getElapsedTime();
 
     this.renderer.autoClear = false;
-
     this.renderer.setScissorTest(false);
     this.renderer.physicallyCorrectLights = true;
-    this.renderer.setPixelRatio(1.5)
+    this.renderer.setPixelRatio(1);
     this.renderer.setClearColor(0xffffff, 1); // the default
     this.renderer.clear(true, true);
     this.renderer.setScissorTest(true);

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { motion, animate } from 'framer-motion';
-import normalizeWheel from 'normalize-wheel';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useState, useEffect } from 'react';
 import Landing from './Landing';
@@ -9,37 +8,7 @@ import Work from './Work';
 import Contact from './Contact';
 import { isLanding, menuOpen } from '../store';
 import SliderCounter from './SliderCounter';
-
-function useScrollDirection() {
-  const [direction, setDirection] = useState(0);
-
-  const handleScroll = (event: Event) => {
-    const normalized = normalizeWheel(event);
-    setDirection(normalized.pixelY * Math.random());
-  };
-
-  useEffect(() => {
-    window.addEventListener("mousewheel", handleScroll);
-    return () => window.removeEventListener("mousewheel", handleScroll);
-  }, [direction]);
-
-  return direction;
-}
-
-function useHeightListener(initialHeight: number) {
-  const [height, setHeight] = useState(initialHeight);
-
-  const handleResize = (event: Event) => {
-    setHeight(event?.target?.innerHeight);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [height]);
-
-  return height;
-}
+import { useScrollDirection, useHeightListener } from '../util';
 
 interface SliderProps {
   height: number

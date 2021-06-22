@@ -16,9 +16,7 @@ function createMaterials(el) {
     fragmentShader,
     uniforms: {
       uTime: { value: 0.0 },
-      uTexture: { value: new TextureLoader().load(
-        "https://source.unsplash.com/4pTY4ty7jXM/1920x1080"
-        ) },
+      uTexture: { value: new TextureLoader().load(el.src) },
       uResolution: { value: new Vector2() },
       uProgress: { value: 0.0 }
     },

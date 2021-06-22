@@ -13,8 +13,10 @@ class Plane {
   renderer;
   controls;
   meshes;
+  type;
 
-  constructor(el, renderer) {
+  constructor(el, renderer, variation) {
+    this.type = variation;
     this.container = el;
     this.renderer = renderer;
     this.scene = new Scene();
@@ -23,25 +25,24 @@ class Plane {
 
     const directional = new DirectionalLight('white', 4);
 
-    const ambientLight = new HemisphereLight(
-      0xaaaaaa, 0x444444
-    );
-
     directional.position.set(0, 0, -5);
     this.camera.position.set(0, 0, 2);
 
     this.controls = createControls(this.camera, this.container);
     this.meshes.plane.position.set(0, 0, 0.2);
     this.camera.lookAt(this.meshes.plane);
-    this.scene.add(directional, ambientLight, this.meshes.plane);
+    this.scene.add(directional, this.meshes.plane);
 
     console.log(this.container.parentElement);
 
-    this.container.parentElement.addEventListener('mouseenter', this.onTouchDown.bind(this));
-    this.container.parentElement.addEventListener('mouseleave', this.onTouchUp.bind(this));
-    window.addEventListener('mousedown', this.onTouchDown.bind(this));
-    window.addEventListener('mousemove', this.onTouchMove.bind(this));
-    window.addEventListener('mouseup', this.onTouchUp.bind(this));
+    if (this.type === 'plane') {
+      this.container.parentElement.addEventListener('mouseenter', this.onTouchDown.bind(this));
+      this.container.parentElement.addEventListener('mouseleave', this.onTouchUp.bind(this));
+    } else {
+      window.addEventListener('mousedown', this.onTouchDown.bind(this));
+      window.addEventListener('mousemove', this.onTouchMove.bind(this));
+      window.addEventListener('mouseup', this.onTouchUp.bind(this));
+    }
   }
 
   getBounds() {
@@ -60,6 +61,8 @@ class Plane {
   /**
    * Events.
    */
+  resize () {}
+
   onTouchDown (event) {
     console.log('listen')
     this.isDown = true

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 import cx from 'classnames';
 import { motion, useAnimation } from "framer-motion";
 
