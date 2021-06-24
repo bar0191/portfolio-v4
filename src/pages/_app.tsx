@@ -24,9 +24,9 @@ const RenderCursor = dynamic(
 );
 
 const variants = {
-  enter: { opacity: 0, transition: { duration: 0.2 }},
-  center: { opacity: 1, transition: { duration: 0.2 }},
-  exit: { opacity: 0, transition: { duration: 0.2 }}
+  enter: { opacity: 1 },
+  center: { opacity: 1 },
+  exit: { opacity: 0, transition: { duration: 0.4 }}
 }
 
 function AppWrapper({ Component, pageProps }: AppProps) : JSX.Element {

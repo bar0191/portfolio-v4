@@ -4,7 +4,7 @@ import { animate, easeIn } from 'popmotion';
 
 function Loader(): JSX.Element {
   const [dash, setDash] = useState(1000);
-  const [y, setY] = useState(50);
+  const [y, setY] = useState(60);
 
   useEffect(() => {
     // let svg = document.getElementById("svg-loader");
@@ -16,7 +16,7 @@ function Loader(): JSX.Element {
     animate({
       from: dash,
       to: 0,
-      duration: 2500,
+      duration: 2300,
       ease: easeIn,
       onUpdate: latest => setDash(latest)
     })
@@ -24,7 +24,7 @@ function Loader(): JSX.Element {
     animate({
       from: y,
       to: 35,
-      duration: 3000,
+      duration: 2600,
       ease: easeIn,
       onUpdate: latest => setY(latest)
     })
