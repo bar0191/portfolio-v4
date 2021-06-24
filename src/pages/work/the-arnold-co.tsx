@@ -1,49 +1,20 @@
 import * as React from 'react';
-import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isLanding, menuOpen, pageRendered } from '../../store';
-import SubtextSlider from '../../components/SubtextSlider';
 import Headline from '../../components/Headline';
 import Link from '../../components/Link';
 
 const lineVariants = {
-  enter: {
-    y: 15,
-    opacity: 0,
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-  },
-  exit: {
-    y: -15,
-    opacity: 0,
-  }
+  enter: { y: 15, opacity: 0 },
+  center: { y: 0, opacity: 1 },
+  exit: { y: -15, opacity: 0 }
 }
 
 const countVariants = {
-  enter: {
-    y: 20,
-    opacity: 0,
-    transition: {
-      delay: 0.2,
-    }
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      delay: 0.2,
-    }
-  },
-  exit: {
-    y: -20,
-    opacity: 0,
-    transition: {
-      delay: 0.2,
-    }
-  }
+  enter: { y: 20, opacity: 0, transition: { delay: 0.2 }},
+  center: { y: 0, opacity: 1, transition: { delay: 0.2 }},
+  exit: { y: -20, opacity: 0, transition: { delay: 0.2 }}
 }
 
 function Tac(): JSX.Element {
@@ -53,16 +24,21 @@ function Tac(): JSX.Element {
 
   React.useEffect(() => {
     const body = document.querySelector('body');
-    body.classList.add('scrollable');
+
+    if (body) {
+      body.classList.add('scrollable');
+    }
 
     setLanded(true);
     setRendered({ page: 'project', seed: Math.random() });
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     if (!open) {
       setRendered({ page: 'project', seed: Math.random() });
     }
+    // eslint-disable-next-line
   }, [open]);
 
   return (
@@ -80,9 +56,19 @@ function Tac(): JSX.Element {
                 role: 'Engineer',
                 tech: 'Next.js, Cosmic, GraphQL'
               }}
+              email={false}
+              quote={false}
             />
             <span className="slider__ruler-top still" />
-            <Link href="https://www.thearnoldcos.com/" label="View Site" swap headline />
+            <Link
+              href="https://www.thearnoldcos.com/"
+              label="View Site"
+              swap
+              headline
+              blank
+              page={false}
+              center={false}
+            />
           </section>
           <section className="page__image-placeholder">
             <img src="https://source.unsplash.com/tmHzuxeZUAQ/1920x1080" alt='silence you fool' className='gl-about-scene' />
@@ -91,6 +77,9 @@ function Tac(): JSX.Element {
             <Headline
               headline="Designed in house by Simple Media. We migrated 4 wordpress domains into a cutting edge CMS called Cosmic. Backed by Next.js, and GraphQL."
               open={open}
+              email={false}
+              quote={false}
+              tags={null}
             />
           </section>
           <section className="page__section" style={{ marginTop: 120 }}>
@@ -112,7 +101,7 @@ function Tac(): JSX.Element {
                   variants={countVariants}
                   className="page__count"
                 >
-                  '17
+                  &#39;17
                 </motion.div>
               </div>
               <div className="page__cell">
@@ -149,7 +138,15 @@ function Tac(): JSX.Element {
             </figure>
           </section>
           <section className="work__bottom-container">
-            <Link href="/work" label="Back to Work" swap={false} page center />
+            <Link
+              href="/work"
+              label="Back to Work"
+              swap={false}
+              page
+              center
+              headline={false}
+              blank={false}
+            />
           </section>
         </article>
       )}

@@ -5,18 +5,8 @@ import { menuOpen } from '../store';
 import NavItem from './NavItem';
 
 const variants = {
-  center: {
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.2,
-    }
-  },
-  exit: {
-    transition: {
-      staggerChildren: 0.05,
-      staggerDirection: -1,
-    }
-  }
+  center: { transition: { staggerChildren: 0.07, delayChildren: 0.2 }},
+  exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 }}
 };
 
 function Nav(): JSX.Element {

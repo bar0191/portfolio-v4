@@ -17,7 +17,10 @@ const isLanding = atom({
 
 const pageRendered = atom({
   key: 'pageRendered',
-  default: null,
+  default: {
+    page: '',
+    seed: 0
+  },
 });
 
 const isPageGlLoaded = atom({

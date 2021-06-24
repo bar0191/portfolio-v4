@@ -30,16 +30,19 @@ const displayVariants = {
   },
 }
 
-function Contact({ landed = false }): JSX.Element {
+interface ContactPropTypes {
+  landed: boolean,
+}
+
+function Contact({ landed = false }: ContactPropTypes): JSX.Element {
   const [init, setInit] = useState(false);
   const open = useRecoilValue(menuOpen);
 
   useEffect(() => {
     if (landed && !init) {
-      setTimeout(() => {
-        setInit(true);
-      }, 500);
+      setTimeout(() => setInit(true), 500);
     }
+    // eslint-disable-next-line
   }, [landed]);
 
   return (
@@ -56,10 +59,18 @@ function Contact({ landed = false }): JSX.Element {
                 custom={init}
                 className="landing__h1"
               >
-                {`Hi! Let's chat.`}
+                Hi! Let&#39;s chat.
               </motion.h1>
             </div>
-            <Link href="/contact" label="Contact" swap />
+            <Link
+              href="/contact"
+              label="Contact"
+              swap
+              blank={false}
+              center={false}
+              headline={false}
+              page={false}
+            />
             <span className="slider__ruler-top" />
             <SubtextSlider
               swapped
@@ -72,6 +83,7 @@ function Contact({ landed = false }): JSX.Element {
                 'Instagram.',
               ]}
               label="Find me on"
+              still={false}
             />
           </>
         )}

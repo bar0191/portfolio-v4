@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import normalizeWheel from 'normalize-wheel';
 
-function useWindowSize() {
+function useWindowSize(): Array<number> {
   const [size, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
     function updateSize() {
@@ -14,11 +14,14 @@ function useWindowSize() {
   return size;
 }
 
-function useHeightListener(initialHeight: number) {
+function useHeightListener(initialHeight: number): number {
   const [height, setHeight] = useState(initialHeight);
 
   const handleResize = (event: Event) => {
-    setHeight(event?.target?.innerHeight);
+    if (event && event.target) {
+      const w = event.target as Window;
+      setHeight(w.innerHeight);
+    }
   };
 
   useEffect(() => {
@@ -29,7 +32,7 @@ function useHeightListener(initialHeight: number) {
   return height;
 }
 
-function useScrollDirection() {
+function useScrollDirection(): number {
   const [direction, setDirection] = useState(0);
 
   const handleScroll = (event: Event) => {
@@ -46,8 +49,15 @@ function useScrollDirection() {
   return direction;
 }
 
-const lerp = (v0, v1, t) => {
+const lerp = (v0: number, v1: number, t: number): number => {
   return v0 * ( 1 - t ) + v1 * t;
+}
+
+function getTranslateX(el: Element): number {
+  const style = window.getComputedStyle(el);
+  const matrix = new WebKitCSSMatrix(style.transform);
+
+  return matrix.m41;
 }
 
 export {
@@ -55,4 +65,5 @@ export {
   useHeightListener,
   useScrollDirection,
   lerp,
+  getTranslateX,
 }

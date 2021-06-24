@@ -12,11 +12,11 @@ function Home(): JSX.Element {
     width: 0,
   });
 
-  setRendered({ page: 'home', seed: Math.random() });
-
   useEffect(() => {
+    setRendered({ page: 'home', seed: Math.random() });
     setState({ height: window.innerHeight, width: window.innerWidth });
     // setRendered({ page: 'home', seed: Math.random() });
+    // eslint-disable-next-line
   }, []);
 
   return (

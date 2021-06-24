@@ -30,7 +30,11 @@ const displayVariants = {
   },
 }
 
-function Work({ landed = false }): JSX.Element {
+interface WorkPropTypes {
+  landed: boolean,
+}
+
+function Work({ landed = false }: WorkPropTypes): JSX.Element {
   const [init, setInit] = useState(false);
   const open = useRecoilValue(menuOpen);
 
@@ -40,6 +44,7 @@ function Work({ landed = false }): JSX.Element {
         setInit(true);
       }, 500);
     }
+    // eslint-disable-next-line
   }, [landed]);
 
   return (
@@ -59,7 +64,15 @@ function Work({ landed = false }): JSX.Element {
                 Work
               </motion.h1>
             </div>
-            <Link href="/about" label="See work" swap />
+            <Link
+              href="/work"
+              label="See work"
+              swap
+              center={false}
+              headline={false}
+              page={false}
+              blank={false}
+            />
             <span className="slider__ruler-top" />
             <SubtextSlider
               swapped
@@ -72,6 +85,7 @@ function Work({ landed = false }): JSX.Element {
                 'good food.',
               ]}
               label="Passion for"
+              still={false}
             />
           </>
         )}

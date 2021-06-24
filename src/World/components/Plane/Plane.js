@@ -67,7 +67,6 @@ class Plane {
   resize () {}
 
   onTouchDown (event) {
-    console.log('listen')
     this.isDown = true
 
     if (this.isDown) {
@@ -78,7 +77,6 @@ class Plane {
       })
     }
 
-    console.log(event);
     //this.scroll.position = this.scroll.current
     //this.start = event.touches ? event.touches[0].clientX : event.clientX
   }

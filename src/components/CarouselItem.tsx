@@ -1,20 +1,39 @@
 import * as React from 'react';
-import { motion, animate } from 'framer-motion';
+import { motion, animate, AnimationControls } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isLinkHover, isWorkRendered } from '../store';
 
-function CarouselItem({ item, controls, index }) {
+interface CarouselItemTypes {
+  index: number,
+  image: string,
+  label: string,
+  href: string,
+  count: number,
+}
+
+interface CarouselItemPropTypes {
+  item: CarouselItemTypes,
+  controls: AnimationControls,
+  index: number,
+}
+
+
+
+function CarouselItem(props: CarouselItemPropTypes): JSX.Element {
+  const { item, controls, index } = props;
   const setOnHover = useSetRecoilState(isLinkHover);
   const [progress, setProgress] = useState(0);
-  const [cursor, setCursor] = useState(null);
-  const [cursorInner, setCursorInner] = useState(null);
+  const [cursor, setCursor] = useState<Element | null>(null);
+  const [cursorInner, setCursorInner] = useState<Element | null>(null);
   const isRendered = useRecoilValue(isWorkRendered);
 
   useEffect(() => {
-    setCursor(document.querySelector('#cursor'));
-    setCursorInner(document.querySelector('.cursor'));
+    const cursorEl = document.querySelector<Element>('#cursor');
+    const cursorInnerEl = document.querySelector<Element>('.cursor');
+    setCursor(cursorEl);
+    setCursorInner(cursorInnerEl);
   }, []);
 
   const onEnter = () => {
@@ -23,8 +42,12 @@ function CarouselItem({ item, controls, index }) {
       duration: 0.8,
       onUpdate: (v) => setProgress(v),
     });
-    cursor.classList.add('arrow');
-    cursorInner.style.opacity = "0";
+
+    const inner = cursorInner as HTMLElement;
+    if (cursor && inner) {
+      cursor.classList.add('arrow');
+      inner.style.opacity = "0";
+    }
   };
 
   const onLeave = () => {
@@ -33,14 +56,22 @@ function CarouselItem({ item, controls, index }) {
       duration: 0.8,
       onUpdate: (v) => setProgress(v),
     });
-    cursor.classList.remove('arrow');
-    cursorInner.style.opacity = "1";
+
+    const inner = cursorInner as HTMLElement;
+    if (cursor && inner) {
+      cursor.classList.remove('arrow');
+      inner.style.opacity = "1";
+    }
   };
 
   const onClick = () => {
     setOnHover(false);
-    cursor.classList.remove('arrow');
-    cursorInner.style.opacity = "1";
+
+    const inner = cursorInner as HTMLElement;
+    if (cursor && inner) {
+      cursor.classList.remove('arrow');
+      inner.style.opacity = "1";
+    }
   };
 
   return (

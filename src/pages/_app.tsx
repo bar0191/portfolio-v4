@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '../styles/styles.scss';
 import type { AppProps } from 'next/app';
-import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import Head from 'next/head';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import dynamic from 'next/dynamic'
@@ -16,42 +16,63 @@ import Loader from '../components/Loader';
 const RenderGL = dynamic(
   () => import('../components/renderGL.js'),
   { ssr: false }
-)
+);
 
 const RenderCursor = dynamic(
   () => import('../components/cursor.js'),
   { ssr: false }
-)
+);
+
+const variants = {
+  enter: { opacity: 0, transition: { duration: 0.2 }},
+  center: { opacity: 1, transition: { duration: 0.2 }},
+  exit: { opacity: 0, transition: { duration: 0.2 }}
+}
 
 function AppWrapper({ Component, pageProps }: AppProps) : JSX.Element {
+  const [init, setInit] = React.useState(false);
   const isLoaded = useRecoilValue(isGlLoaded);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isPageLoaded = useRecoilValue(isPageGlLoaded);
 
-  if (!isLoaded) {
-    return (
-      <div style={{
-        zIndex: 9999,
-        position: 'absolute',
-        width:'100%',
-        height: '100%',
-        background: 'white',
-      }}>
-        <Loader />
-      </div>
-    )
-  }
+  React.useEffect(() => {
+    if (isLoaded) {
+      setTimeout(() => {
+        setInit(true);
+      }, 2600);
+    }
+  }, [isLoaded]);
 
   return (
-    <>
-      <Logo />
-      <Nav />
-      <Hamburger />
-      <Grid />
-      <Mouse />
-      <RenderCursor />
-      <Component {...pageProps} />
-      <div className="bg-noise" />
-    </>
+    <AnimatePresence>
+      { !init ? (
+        <motion.div
+          initial="enter"
+          animate="center"
+          exit="exit"
+          variants={variants}
+          style={{
+            zIndex: 50,
+            position: 'absolute',
+            width:'100%',
+            height: '100%',
+            background: 'black',
+          }}
+        >
+          <Loader />
+        </motion.div>
+      ) : (
+        <>
+          <Logo />
+          <Nav />
+          <Hamburger />
+          <Grid />
+          <Mouse />
+          <RenderCursor />
+          <Component {...pageProps} />
+        </>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -72,6 +93,7 @@ function AppRoute(props: AppProps): JSX.Element {
       <div id="cursor">
         <div className="cursor-circle" />
       </div>
+      <div className="bg-noise" />
       <AppWrapper { ...props } />
       <RenderGL { ...props } />
     </AnimateSharedLayout>

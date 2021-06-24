@@ -1,49 +1,28 @@
 import * as React from 'react';
-import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isLanding, menuOpen, pageRendered } from '../../store';
-import SubtextSlider from '../../components/SubtextSlider';
 import Headline from '../../components/Headline';
 import Link from '../../components/Link';
 
 const lineVariants = {
-  enter: {
-    y: 15,
-    opacity: 0,
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-  },
-  exit: {
-    y: -15,
-    opacity: 0,
-  }
+  enter: { y: 15, opacity: 0 },
+  center: { y: 0, opacity: 1 },
+  exit: { y: -15, opacity: 0 }
 }
 
 const countVariants = {
-  enter: {
-    y: 20,
-    opacity: 0,
-    transition: {
-      delay: 0.2,
-    }
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      delay: 0.2,
-    }
-  },
-  exit: {
-    y: -20,
-    opacity: 0,
-    transition: {
-      delay: 0.2,
-    }
-  }
+  enter: { y: 20, opacity: 0, transition: { delay: 0.2 }},
+  center: { y: 0, opacity: 1, transition: { delay: 0.2}},
+  exit: { y: -20, opacity: 0, transition: { delay: 0.2} }
+}
+
+interface TagTypes {
+  client: string,
+  agency: string,
+  status: string,
+  role: string,
+  tech: string,
 }
 
 function Enformer(): JSX.Element {
@@ -52,18 +31,30 @@ function Enformer(): JSX.Element {
   const open = useRecoilValue(menuOpen);
 
   React.useEffect(() => {
-    const body = document.querySelector('body');
-    body.classList.add('scrollable');
+    const body = document.querySelector<Element>('body');
+    if (body) {
+      body.classList.add('scrollable');
+    }
 
     setLanded(true);
     setRendered({ page: 'project', seed: Math.random() });
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     if (!open) {
       setRendered({ page: 'project', seed: Math.random() });
     }
+    // eslint-disable-next-line
   }, [open]);
+
+  const tagData: TagTypes = {
+    client: 'Enformer',
+    agency: 'Mobelux',
+    status: 'Beta',
+    role: 'Engineer',
+    tech: 'Django, Mapbox, PostGis, React'
+  }
 
   return (
     <AnimatePresence>
@@ -73,16 +64,20 @@ function Enformer(): JSX.Element {
             <Headline
               headline="A next-gen map tool for providing real time visualization of wetland and stream credit data by aggregating mitigation bank ledger transactions by service area."
               open={open}
-              tags={{
-                client: 'Enformer',
-                agency: 'Mobelux',
-                status: 'Beta',
-                role: 'Engineer',
-                tech: 'Django, Mapbox, PostGis, React'
-              }}
+              tags={tagData}
+              email={false}
+              quote={false}
             />
             <span className="slider__ruler-top still" />
-            <Link href="https://enformer.co/" label="View Site" swap headline />
+            <Link
+              href="https://enformer.co/"
+              label="View Site"
+              swap
+              headline
+              blank
+              page={false}
+              center={false}
+            />
           </section>
           <section className="page__image-placeholder">
             <img src="https://source.unsplash.com/uPp_9j4pJJE/1920x1080" alt='silence you fool' className='gl-about-scene' />
@@ -91,6 +86,9 @@ function Enformer(): JSX.Element {
             <Headline
               headline="Designed in house by Mobelux. We built a modern map tool using mapbox, and react. We scrapped environmental services data to provide credit analysis based on Hydrological Units and service areas. Backed By Django, and Postgis."
               open={open}
+              email={false}
+              quote={false}
+              tags={null}
             />
           </section>
           <section className="page__section" style={{ marginTop: 120 }}>
@@ -112,7 +110,7 @@ function Enformer(): JSX.Element {
                   variants={countVariants}
                   className="page__count"
                 >
-                  '21
+                  &#39;21
                 </motion.div>
               </div>
               <div className="page__cell">
@@ -147,7 +145,15 @@ function Enformer(): JSX.Element {
             <img src="/images/enformer3.png" alt='silence you fool' className="cover" />
           </section>
           <section className="work__bottom-container">
-            <Link href="/work" label="Back to Work" swap={false} page center />
+            <Link
+              href="/work"
+              label="Back to Work"
+              swap={false}
+              page
+              center
+              headline={false}
+              blank={false}
+            />
           </section>
         </article>
       )}

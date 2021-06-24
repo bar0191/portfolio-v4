@@ -1,49 +1,20 @@
 import * as React from 'react';
-import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isLanding, menuOpen, pageRendered } from '../../store';
-import SubtextSlider from '../../components/SubtextSlider';
 import Headline from '../../components/Headline';
 import Link from '../../components/Link';
 
 const lineVariants = {
-  enter: {
-    y: 15,
-    opacity: 0,
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-  },
-  exit: {
-    y: -15,
-    opacity: 0,
-  }
+  enter: { y: 15, opacity: 0 },
+  center: { y: 0, opacity: 1 },
+  exit: { y: -15, opacity: 0 }
 }
 
 const countVariants = {
-  enter: {
-    y: 20,
-    opacity: 0,
-    transition: {
-      delay: 0.2,
-    }
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      delay: 0.2,
-    }
-  },
-  exit: {
-    y: -20,
-    opacity: 0,
-    transition: {
-      delay: 0.2,
-    }
-  }
+  enter: { y: 20, opacity: 0, transition: { delay: 0.2 }},
+  center: { y: 0, opacity: 1, transition: { delay: 0.2 }},
+  exit: { y: -20, opacity: 0, transition: { delay: 0.2 }}
 }
 
 function Seql(): JSX.Element {
@@ -53,16 +24,21 @@ function Seql(): JSX.Element {
 
   React.useEffect(() => {
     const body = document.querySelector('body');
-    body.classList.add('scrollable');
+
+    if (body) {
+      body.classList.add('scrollable');
+    }
 
     setLanded(true);
     setRendered({ page: 'project', seed: Math.random() });
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     if (!open) {
       setRendered({ page: 'project', seed: Math.random() });
     }
+    // eslint-disable-next-line
   }, [open]);
 
   return (
@@ -80,9 +56,19 @@ function Seql(): JSX.Element {
                 role: 'Engineer',
                 tech: 'Next.js, GraphQL, Hasura'
               }}
+              email={false}
+              quote={false}
             />
             <span className="slider__ruler-top still" />
-            <Link href="https://theseql.com" label="View Site" swap headline />
+            <Link
+              href="https://theseql.com"
+              label="View Site"
+              swap
+              headline
+              blank
+              page={false}
+              center={false}
+            />
           </section>
           <section className="page__image-placeholder">
             <img src="https://source.unsplash.com/UFIZodJgScQ/1920x1080" alt='silence you fool' className='gl-about-scene' />
@@ -91,6 +77,9 @@ function Seql(): JSX.Element {
             <Headline
               headline="Designed in house by Mobelux. We built a static marketing page on Next.js, and an athlete/recruiter portal backed by GraphQL, and Hasura. "
               open={open}
+              email={false}
+              quote={false}
+              tags={null}
             />
           </section>
           <section className="page__section" style={{ marginTop: 120 }}>
@@ -112,7 +101,7 @@ function Seql(): JSX.Element {
                   variants={countVariants}
                   className="page__count"
                 >
-                  '19
+                  &#39;19
                 </motion.div>
               </div>
               <div className="page__cell">
@@ -154,7 +143,15 @@ function Seql(): JSX.Element {
             </figure>
           </section>
           <section className="work__bottom-container">
-            <Link href="/work" label="Back to Work" swap={false} page center />
+            <Link
+              href="/work"
+              label="Back to Work"
+              swap={false}
+              page
+              center
+              blank={false}
+              headline={false}
+            />
           </section>
         </article>
       )}

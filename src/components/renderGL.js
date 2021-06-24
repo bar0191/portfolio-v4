@@ -74,7 +74,6 @@ function renderGL({ router }) {
 
   // listen for initial page renders, and render webgl accordingly
   useEffect(() => {
-    console.log(zoomed);
     if (rendered) {
       const { page } = rendered;
       switch (page) {

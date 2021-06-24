@@ -1,20 +1,15 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
-import { motion, useMotionValue, animate } from "framer-motion"
+import { motion } from "framer-motion"
 import { isLanding } from '../store';
-
-const { useEffect, useState } = React;
 
 function Logo(): JSX.Element | null {
   const landed = useRecoilValue(isLanding);
 
-  useEffect(() => {
-
-  }, [landed]);
-
   return (
     <Link href='/' >
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a className="logo js-arrow">
         <motion.h1
           animate={{ x: landed ? 0 : -85}}

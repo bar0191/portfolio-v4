@@ -2,30 +2,24 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 
 const variants = {
-  enter: {
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-      delay: 0.8,
-    }
-  },
-  center: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      delay: 0.8,
-    }
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.2,
-    }
-  }
+  enter: { opacity: 0, transition: { duration: 0.3, delay: 0.8 }},
+  center: { opacity: 1, transition: { duration: 0.3, delay: 0.8 }},
+  exit: { opacity: 0, transition: { duration: 0.2 }}
 }
 
-function Tags({ data }): JSX.Element {
+interface TagTypes {
+  client: string,
+  agency: string,
+  status: string,
+  role: string,
+  tech: string,
+}
 
+interface TagsPropTypes {
+  data: TagTypes,
+}
+
+function Tags({ data }: TagsPropTypes): JSX.Element {
   return (
     <motion.ul className="tags" variants={variants}>
       <li className="tags__item">

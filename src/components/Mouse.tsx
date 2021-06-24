@@ -4,27 +4,21 @@ import { useRecoilValue } from 'recoil';
 import { pageRendered } from '../store';
 
 const variants = {
-  visible: {
-    y: -60,
-    x: '-50%',
-    transition: {
-      duration: 1,
-      delay: 0.2,
-    },
-  },
-  hidden: {
-    y: 120,
-    x: '-50%',
-    transition: {
-      duration: 1,
-      delay: 0.2,
-    },
-  },
+  visible: { y: -60, x: '-50%', transition: { duration: 1, delay: 0.2, }},
+  hidden: { y: 120, x: '-50%', transition: { duration: 1, delay: 0.2, }},
 }
 
+interface RenderedTypes {
+  page: string,
+  seed: number
+}
 
 function Mouse(): JSX.Element {
-  const rendered = useRecoilValue(pageRendered);
+  const rendered = useRecoilValue<RenderedTypes>(pageRendered);
+
+  if (rendered && rendered.page === 'contact') {
+    return (<></>);
+  }
 
   return (
     <motion.div
@@ -36,7 +30,7 @@ function Mouse(): JSX.Element {
       <span className="mouse">
         <span className="mouse-movement" />
       </span>
-      { rendered && rendered?.page === 'work' && (
+      { rendered && rendered.page === 'work' && (
         <span>Drag to Navigate</span>
       )}
     </motion.div>

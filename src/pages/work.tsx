@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { isLanding, isWorkRendered, menuOpen, pageRendered } from '../store';
+import { isLanding, menuOpen, pageRendered } from '../store';
 import Carousel from '../components/Carousel';
 import { portfolio } from '../components/portfolio';
 
@@ -13,12 +13,14 @@ function Work(): JSX.Element {
   React.useEffect(() => {
     setLanded(true);
     setRendered({ page: 'work', seed: Math.random() });
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     if (!open) {
       setRendered({ page: 'work', seed: Math.random() });
     }
+    // eslint-disable-next-line
   }, [open]);
 
   return (

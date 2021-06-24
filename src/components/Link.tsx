@@ -7,57 +7,40 @@ import { useSetRecoilState } from 'recoil';
 import { isWorkRendered } from '../store';
 
 const labelVariant = {
-  enter: {
-    y: 50,
-    transition: {
-      duration: 0.4
-    }
-  },
-  center: {
-    y: 0,
-    transition: {
-      duration: 0.4
-    }
-  },
-  exit: {
-    y: -50,
-    transition: {
-      duration: 0.4
-    }
-  }
+  enter: { y: 50, transition: { duration: 0.4 } },
+  center: { y: 0, transition: { duration: 0.4 } },
+  exit: { y: -50, transition: { duration: 0.4 } }
 }
 
 const progressVariant = {
-  enter: {
-    x: -120,
-    transition: {
-      duration: 0.4
-    }
-  },
-  center: {
-    x: 0,
-    transition: {
-      duration: 0.4
-    }
-  },
-  exit: {
-    x: 120,
-    transition: {
-      duration: 0.4
-    }
-  }
+  enter: { x: -120, transition: { duration: 0.4 } },
+  center: { x: 0, transition: { duration: 0.4 } },
+  exit: { x: 120, transition: { duration: 0.4 } }
 }
 
-function HomeLink({ href, label, swap, page, center, headline }): JSX.Element {
-  const [cursor, setCursor] = useState(null);
-  const [cursorInner, setCursorInner] = useState(null);
+interface LinkPropTypes {
+  href: string,
+  label: string,
+  swap: boolean | undefined,
+  page: boolean | undefined,
+  center: boolean | undefined,
+  headline: boolean | undefined,
+  blank: boolean | undefined
+}
+
+function HomeLink(props: LinkPropTypes): JSX.Element {
+  const { href, label, swap, page, center, headline, blank } = props;
+  const [cursor, setCursor] = useState<Element | null>(null);
+  const [cursorInner, setCursorInner] = useState<Element | null>(null);
   const progress = useAnimation();
   const [traversing, setTraversing] = useState(false);
   const setWorkRendered = useSetRecoilState(isWorkRendered);
 
   useEffect(() => {
-    setCursor(document.querySelector('#cursor'));
-    setCursorInner(document.querySelector('.cursor'));
+    const cursorEl = document.querySelector<Element>('#cursor');
+    const cursorElInner = document.querySelector<Element>('.cursor')
+    setCursor(cursorEl);
+    setCursorInner(cursorElInner);
   }, []);
 
   const runProgress = async () => {
@@ -87,8 +70,11 @@ function HomeLink({ href, label, swap, page, center, headline }): JSX.Element {
   }
 
   const onEnter = () => {
-    cursor.classList.add('arrow');
-    cursorInner.style.opacity = "0";
+    const inner = cursorInner as HTMLElement;
+    if (cursor && inner) {
+      cursor.classList.add('arrow');
+      inner.style.opacity = "0";
+    }
 
     if (!traversing) {
       runProgress().catch((e) => console.log(e));
@@ -97,19 +83,27 @@ function HomeLink({ href, label, swap, page, center, headline }): JSX.Element {
   };
 
   const onLeave = () => {
-    cursor.classList.remove('arrow');
-    cursorInner.style.opacity = "1";
+    const inner = cursorInner as HTMLElement;
+    if (cursor && inner) {
+      cursor.classList.remove('arrow');
+      inner.style.opacity = "1";
+    }
   };
 
   const onClick = () => {
     setWorkRendered(false);
-    cursor.classList.remove('arrow');
-    cursorInner.style.opacity = "1";
+    const inner = cursorInner as HTMLElement;
+    if (cursor && inner) {
+      cursor.classList.remove('arrow');
+      inner.style.opacity = "1";
+    }
   };
 
   return (
     <Link href={href}>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <a
+        target={blank ? '_blank' : ''}
         onClick={onClick}
         className={cx("slider__link js-arrow", { swap, body: page, center, headline })}
         onMouseEnter={onEnter}

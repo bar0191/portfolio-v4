@@ -54,7 +54,6 @@ class Ray {
   }
 
   onZoom() {
-    console.log('zoom triggered');
     animate({
       from: 0.75,
       to: 0.05,

@@ -6,7 +6,7 @@ import SubtextSlider from './SubtextSlider';
 import { menuOpen } from '../store';
 
 const variants = {
-  visible: (init) => ({
+  visible: (init: boolean) => ({
     scale: 1,
     opacity: 1,
     x: '-50%',
@@ -37,6 +37,7 @@ function Landing(): JSX.Element {
     if (!init) {
       setInit(true);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -63,6 +64,8 @@ function Landing(): JSX.Element {
           'wish you well.',
         ]}
         label="I"
+        swapped={false}
+        still={false}
       />
     </section>
   );

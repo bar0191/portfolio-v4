@@ -30,8 +30,11 @@ const variants = {
   }
 };
 
+interface AboutPropTypes {
+  landed: boolean
+}
 
-function About({ landed = false }): JSX.Element {
+function About({ landed = false }: AboutPropTypes): JSX.Element {
   const [init, setInit] = useState(false);
   const open = useRecoilValue(menuOpen);
 
@@ -41,6 +44,7 @@ function About({ landed = false }): JSX.Element {
         setInit(true);
       }, 800);
     }
+    // eslint-disable-next-line
   }, [landed]);
 
   return (
@@ -74,7 +78,15 @@ function About({ landed = false }): JSX.Element {
                 </span>
               </h1>
             </div>
-            <Link href="/about" label="About me" swap={false} />
+            <Link
+              href="/about"
+              label="About me"
+              swap={false}
+              blank={false}
+              center={false}
+              headline={false}
+              page={false}
+            />
             <span className="slider__ruler-top" />
             <SubtextSlider
               slides={[
@@ -86,6 +98,8 @@ function About({ landed = false }): JSX.Element {
                 'good food.',
               ]}
               label="Passion for"
+              swapped={false}
+              still={false}
             />
           </>
         )}

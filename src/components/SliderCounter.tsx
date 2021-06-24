@@ -4,46 +4,33 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { wrap } from "popmotion";
 
 const wrapperVariants = {
-  visible: {
-    x: -41,
-    y: '-50%',
-    transition: {
-      duration: 1,
-      delay: 0.2,
-    },
-  },
-  hidden: {
-    x: 100,
-    y: '-50%',
-    transition: {
-      duration: 1,
-      delay: 0.2,
-    },
-  },
+  visible: { x: -41, y: '-50%', transition: { duration: 1, delay: 0.2 }},
+  hidden: { x: 100, y: '-50%', transition: { duration: 1, delay: 0.2 }},
 }
 
 const variants = {
-  enter: (direction: number) => ({
-    y: direction > 0 ? 85 : -85,
-  }),
-  center: {
-    zIndex: 1,
-    y: 0,
-  },
+  enter: (direction: number) => ({ y: direction > 0 ? 85 : -85 }),
+  center: { zIndex: 1, y: 0 },
   exit: (direction: number) => ({
     zIndex: 0,
     y: direction < 0 ? 85 : -85,
   })
 };
 
-function SliderCounter({ length, index, direction }): JSX.Element {
+interface SliderCounterTypes {
+  length: number,
+  index: number,
+  direction: number,
+}
+
+function SliderCounter(props: SliderCounterTypes): JSX.Element {
+  const { length, index, direction } = props;
   const [[page, dir], setPage] = useState([1, 0]);
   const progress = useAnimation();
 
   const posIndex = wrap(0, length, page);
 
   const paginate = (newDirection: number) => {
-    console.log(page);
     setPage([page + newDirection, newDirection]);
   };
 

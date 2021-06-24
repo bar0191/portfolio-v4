@@ -1,8 +1,6 @@
 import * as React from 'react';
 
 function Grid(): JSX.Element {
-
-
   return (
     <div className='grid'>
       <div className='grid__lines'>
