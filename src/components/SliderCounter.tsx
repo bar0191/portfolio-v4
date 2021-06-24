@@ -67,7 +67,7 @@ function SliderCounter({ length, index, direction }): JSX.Element {
         }
       });
       await progress.start({
-        x: ((posIndex - length) * 10),
+        x: ((posIndex - length + 1) * 10),
         transition: {
           type: "tween",
           duration: 1,

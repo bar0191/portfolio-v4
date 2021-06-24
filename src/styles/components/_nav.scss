@@ -15,10 +15,41 @@
     flex-direction: column;
     justify-content: center;
     list-style: none;
+
+    @media (max-width: 576px) {
+      width: 75%;
+      left: 25px;
+    }
   }
 
   &__item {
     color: #f3f3f3;
-    font-size: 7rem;
+    white-space: nowrap;
+    margin-bottom: 1rem;
+    font-size: 6vw;
+    top: 50%;
+    z-index: 9;
+    left: 50%;
+    letter-spacing: 1px;
+    line-height: 0.9;
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
+    background: linear-gradient(0, #fff 0%, #fff 100%);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px white;
+
+    @media (max-width: 576px) {
+      font-size: 4rem;
+    }
+
+    & > a {
+      text-decoration: none;
+    }
   }
 }

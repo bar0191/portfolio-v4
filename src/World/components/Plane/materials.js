@@ -21,7 +21,7 @@ function createMaterials(el) {
       uProgress: { value: 0.0 }
     },
     // wireframe: true,
-    side: DoubleSide
+    // side: DoubleSide
   });
 
   return { body, shader };

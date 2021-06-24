@@ -39,6 +39,7 @@ function useScrollDirection() {
 
   useEffect(() => {
     window.addEventListener("mousewheel", handleScroll);
+    // window.addEventListener("touchmove", handleScroll);
     return () => window.removeEventListener("mousewheel", handleScroll);
   }, [direction]);
 

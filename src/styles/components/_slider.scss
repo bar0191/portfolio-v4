@@ -19,6 +19,10 @@
     z-index: 2;
     margin: 0 auto;
     width: 50%;
+
+    @media (max-width: 576px) {
+      width: 100%;
+    }
   }
 
   &__counter {
@@ -31,6 +35,13 @@
     right: -20px;
     transform: translate(-50%, -50%);
     font-family: NeutralFace, "sans-serif";
+
+    @media (max-width: 576px) {
+      bottom: 12.5%;
+      top: unset;
+      right: -50px;
+      visibility: hidden;
+    }
   }
 
   &__counter-active {
@@ -106,17 +117,30 @@
     margin-top: 50vh;
     color: white;
 
+    @media (max-width: 576px) {
+      left: 20px;
+    }
+
     &.swap {
       position: absolute;
       top: 25%;
       left: 25%;
       margin-top: 0;
       transform: translateY(-50%);
+
+      @media (max-width: 576px) {
+        left: 20px;
+        margin-top: 50vh;
+      }
     }
 
     &.still {
       left: 100%;
       min-width: 135px;
+
+      @media (max-width: 576px) {
+        left: 20px;
+      }
     }
   }
 
@@ -132,6 +156,10 @@
 
     &.still {
       right: 0;
+    }
+
+    @media (max-width: 576px) {
+      visibility: hidden;
     }
   }
 
@@ -161,6 +189,7 @@
     align-items: center;
     margin-left: 24px;
     font-size: 0.95rem;
+    white-space: nowrap;
   }
 
   &__subtext-slide {
@@ -194,25 +223,55 @@
     justify-content: center;
     padding-bottom: 16px;
 
+    @media (max-width: 576px) {
+      left: unset;
+      right: -40px;
+    }
+
     &.swap {
       z-index: 4;
       position: absolute;
       left: 75%;
       margin-top: 50vh;
+
+      @media (max-width: 576px) {
+        margin-top: 0;
+        left: unset;
+        right: -40px;
+      }
     }
 
     &.body {
       top: 100%;
       left: 15%;
+
+      @media (max-width: 576px) {
+        left: 50%;
+        min-width: 100px;
+        max-width: 0;
+      }
     }
 
     &.center {
       left: 50%;
     }
+
+    &.headline {
+      left: 100%;
+
+      @media (max-width: 576px) {
+        left: 82%;
+        margin-top: 50vh;
+      }
+    }
   }
 
   &__link-label {
     font-size: 1.3rem;
+
+    @media (max-width: 576px) {
+      font-size: 1rem;
+    }
   }
 
   &__link-hr {

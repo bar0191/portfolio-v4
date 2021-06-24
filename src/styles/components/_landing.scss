@@ -10,5 +10,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
+
+    @media (max-width: 576px) {
+      font-size: 26vw;
+      line-height: 0.9;
+    }
   }
 }

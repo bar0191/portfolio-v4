@@ -11,6 +11,7 @@ import { isGlLoaded, isPageGlLoaded } from '../store';
 import Mouse from '../components/Mouse';
 import Logo from '../components/Logo';
 import Nav from '../components/Nav';
+import Loader from '../components/Loader';
 
 const RenderGL = dynamic(
   () => import('../components/renderGL.js'),
@@ -28,7 +29,15 @@ function AppWrapper({ Component, pageProps }: AppProps) : JSX.Element {
 
   if (!isLoaded) {
     return (
-      <div>Loading....</div>
+      <div style={{
+        zIndex: 9999,
+        position: 'absolute',
+        width:'100%',
+        height: '100%',
+        background: 'white',
+      }}>
+        <Loader />
+      </div>
     )
   }
 
@@ -41,6 +50,7 @@ function AppWrapper({ Component, pageProps }: AppProps) : JSX.Element {
       <Mouse />
       <RenderCursor />
       <Component {...pageProps} />
+      <div className="bg-noise" />
     </>
   );
 }

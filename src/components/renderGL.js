@@ -3,7 +3,15 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import World from '../World/World';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { isGlLoaded, isPageGlLoaded, isRayZoomed, menuOpen, pageRendered } from '../store';
+import {
+  isGlLoaded,
+  isLinkHover,
+  isPageGlLoaded,
+  isRayZoomed,
+  isWorkRendered,
+  menuOpen,
+  pageRendered
+} from '../store';
 
 // global controller for 3D world
 let controller;
@@ -37,23 +45,36 @@ async function renderSlides() {
 function renderGL({ router }) {
   const [loaded, setLoaded] = useRecoilState(isGlLoaded);
   const open = useRecoilValue(menuOpen);
+  const isHover = useRecoilValue(isLinkHover);
   const container = document.querySelector('#scene-container');
   const rendered = useRecoilValue(pageRendered);
   const isLoaded = useSetRecoilState(isPageGlLoaded);
   const [zoomed, setZoomed] = useRecoilState(isRayZoomed);
+  const setWorkRendered = useSetRecoilState(isWorkRendered);
 
   // listen for when menu is opened, zoom ray in/out
   useEffect(() => {
-    if (!controller || rendered?.type !== 'home') return null;
-    if (open) {
+    if (!controller || rendered?.page !== 'home') return null;
+    if (open && !zoomed) {
       controller.rayZoomIn();
     } else {
       controller.rayZoomOut();
     }
   }, [open]);
 
+  // listen for when menu is opened, zoom ray in/out
+  useEffect(() => {
+    if (!controller || rendered?.page !== 'work') return null;
+    if (isHover) {
+      controller.planeTouchDown();
+    } else {
+      controller.planeTouchUp();
+    }
+  }, [isHover]);
+
   // listen for initial page renders, and render webgl accordingly
   useEffect(() => {
+    console.log(zoomed);
     if (rendered) {
       const { page } = rendered;
       switch (page) {
@@ -64,6 +85,7 @@ function renderGL({ router }) {
           }
           break;
         case 'about':
+        case 'project':
           renderAbout()
             .then(() => isLoaded(true))
             .catch((e) => console.log(e));
@@ -73,8 +95,12 @@ function renderGL({ router }) {
           }
           break;
         case 'work':
+          setWorkRendered(false);
           renderSlides()
-            .then(() => isLoaded(true))
+            .then(() => {
+              isLoaded(true);
+              setWorkRendered(true);
+            })
             .catch((e) => console.log(e));
           if (!zoomed) {
             controller.rayZoomIn();

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 import { motion, useAnimation } from "framer-motion";
+import { useSetRecoilState } from 'recoil';
+import { isWorkRendered } from '../store';
 
 const labelVariant = {
   enter: {
@@ -46,11 +48,12 @@ const progressVariant = {
   }
 }
 
-function HomeLink({ href, label, swap, page, center }): JSX.Element {
+function HomeLink({ href, label, swap, page, center, headline }): JSX.Element {
   const [cursor, setCursor] = useState(null);
   const [cursorInner, setCursorInner] = useState(null);
   const progress = useAnimation();
   const [traversing, setTraversing] = useState(false);
+  const setWorkRendered = useSetRecoilState(isWorkRendered);
 
   useEffect(() => {
     setCursor(document.querySelector('#cursor'));
@@ -99,6 +102,7 @@ function HomeLink({ href, label, swap, page, center }): JSX.Element {
   };
 
   const onClick = () => {
+    setWorkRendered(false);
     cursor.classList.remove('arrow');
     cursorInner.style.opacity = "1";
   };
@@ -107,7 +111,7 @@ function HomeLink({ href, label, swap, page, center }): JSX.Element {
     <Link href={href}>
       <a
         onClick={onClick}
-        className={cx("slider__link js-arrow", { swap, body: page, center })}
+        className={cx("slider__link js-arrow", { swap, body: page, center, headline })}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >

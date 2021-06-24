@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Tags from './Tags';
 
 const itemVariants = {
   enter: {
@@ -46,7 +47,7 @@ const variants = {
   }
 };
 
-function Headline({ headline, quote, open }): JSX.Element {
+function Headline({ headline, quote, open, tags }): JSX.Element {
   const value = headline.split(' ');
   return (
     <motion.div
@@ -77,6 +78,9 @@ function Headline({ headline, quote, open }): JSX.Element {
           <></>
         )}
       </motion.blockquote>
+      { tags && (
+        <Tags data={tags} />
+      )}
     </motion.div>
   );
 }

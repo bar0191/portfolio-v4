@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { motion } from "framer-motion";
+import { useRecoilValue } from 'recoil';
+import { pageRendered } from '../store';
 
 const variants = {
   visible: {
@@ -22,6 +24,8 @@ const variants = {
 
 
 function Mouse(): JSX.Element {
+  const rendered = useRecoilValue(pageRendered);
+
   return (
     <motion.div
       initial="hidden"
@@ -32,6 +36,9 @@ function Mouse(): JSX.Element {
       <span className="mouse">
         <span className="mouse-movement" />
       </span>
+      { rendered && rendered?.page === 'work' && (
+        <span>Drag to Navigate</span>
+      )}
     </motion.div>
   )
 }

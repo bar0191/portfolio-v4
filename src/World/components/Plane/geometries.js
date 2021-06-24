@@ -1,8 +1,15 @@
 import { PlaneBufferGeometry } from 'three';
 
-function createGeometries() {
+function createGeometries(variation) {
+  let width = 3;
+  let height = 2;
 
-  const plane = new PlaneBufferGeometry(3, 2, 16, 16);
+  if (variation === 'slide') {
+    width = 4;
+    height = 3;
+  }
+
+  const plane = new PlaneBufferGeometry(width, height, 16, 16);
 
   return {
     plane,

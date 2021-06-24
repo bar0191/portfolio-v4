@@ -1,58 +1,9 @@
 import * as React from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { isLanding, menuOpen, pageRendered } from '../store';
+import { isLanding, isWorkRendered, menuOpen, pageRendered } from '../store';
 import Carousel from '../components/Carousel';
-
-const slides = [{
-    index: 0,
-    image: 'https://source.unsplash.com/4DykvhW8SsI/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 1,
-  }, {
-    index: 1,
-    image: 'https://source.unsplash.com/random/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 2,
-  }, {
-    index: 2,
-    image: 'https://source.unsplash.com/random/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 3,
-  }, {
-    index: 3,
-    image: 'https://source.unsplash.com/random/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 4,
-  }, {
-    index: 4,
-    image: 'https://source.unsplash.com/4DykvhW8SsI/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 1,
-  }, {
-    index: 5,
-    image: 'https://source.unsplash.com/random/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 2,
-  }, {
-    index: 6,
-    image: 'https://source.unsplash.com/random/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 3,
-  }, {
-    index: 7,
-    image: 'https://source.unsplash.com/random/1920x1080',
-    label: 'Slides',
-    href: '/work/slide',
-    count: 4,
-  },
-]
+import { portfolio } from '../components/portfolio';
 
 function Work(): JSX.Element {
   const setRendered = useSetRecoilState(pageRendered);
@@ -71,11 +22,15 @@ function Work(): JSX.Element {
   }, [open]);
 
   return (
-    <article className="work">
-      <section className="work__container">
-        <Carousel slides={slides} />
-      </section>
-    </article>
+    <AnimatePresence>
+      { !open && (
+        <article className="work">
+          <section className="work__container">
+            <Carousel slides={portfolio} />
+          </section>
+        </article>
+      )}
+    </AnimatePresence>
   );
 }
 

@@ -172,13 +172,13 @@ class Ray {
   }
 
   tick() {
-    // if (!this.isPlaying) return;
-    // this.time += 0.05;
-    // this.material.uniforms.sinValue.value = this.settings.sinValue;
-    // this.material.uniforms.sinMultiplier.value = this.settings.sinMultiplier;
-    // this.material.uniforms.rotationSpeed.value = this.settings.rotationSpeed;
-    // this.material.uniforms.uScale.value = this.settings.uScale;
-    // this.material.uniforms.time.value = this.time;
+    if (!this.isPlaying) return;
+    this.time += 0.05;
+    this.material.uniforms.sinValue.value = this.settings.sinValue;
+    this.material.uniforms.sinMultiplier.value = this.settings.sinMultiplier;
+    this.material.uniforms.rotationSpeed.value = this.settings.rotationSpeed;
+    this.material.uniforms.uScale.value = this.settings.uScale;
+    this.material.uniforms.time.value = this.time;
   }
 }
 

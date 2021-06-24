@@ -21,19 +21,22 @@ class Plane {
     this.renderer = renderer;
     this.scene = new Scene();
     this.camera = new PerspectiveCamera(45, 2, 0.1, 100);
-    this.meshes = createMeshes(el);
+    this.meshes = createMeshes(el, variation);
+    let zoom = 2;
+
+    if (variation === 'slide') {
+      zoom = 3.7;
+    }
 
     const directional = new DirectionalLight('white', 4);
 
     directional.position.set(0, 0, -5);
-    this.camera.position.set(0, 0, 2);
+    this.camera.position.set(0, 0, zoom);
 
     this.controls = createControls(this.camera, this.container);
     this.meshes.plane.position.set(0, 0, 0.2);
     this.camera.lookAt(this.meshes.plane);
     this.scene.add(directional, this.meshes.plane);
-
-    console.log(this.container.parentElement);
 
     if (this.type === 'plane') {
       this.container.parentElement.addEventListener('mouseenter', this.onTouchDown.bind(this));

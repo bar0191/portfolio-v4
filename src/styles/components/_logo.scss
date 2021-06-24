@@ -12,4 +12,9 @@
   overflow: hidden;
   z-index: 999;
   text-decoration: none;
+
+  @media (max-width: 576px) {
+    top: 25px;
+    left: 25px;
+  }
 }

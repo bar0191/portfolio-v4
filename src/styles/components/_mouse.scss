@@ -65,8 +65,7 @@
   font-size: 13px;
   font-weight: normal;
   color: #f3f3f3;
-  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   margin-top: 10%;
   text-decoration: none;
   overflow: hidden;
@@ -75,12 +74,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  @media (max-width: 576px) {
+    bottom: -40px;
+  }
+
   // The Mouse
   .mouse {
     position: relative;
     display: block;
-    width: 36px;
-    height: 61px;
+    width: 30px;
+    height: 50px;
     margin: 0 auto 20px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

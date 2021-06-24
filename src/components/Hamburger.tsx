@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import cx from 'classnames';
 import { motion } from "framer-motion";
-import { isRayZoomed, menuOpen } from '../store';
+import { isRayZoomed, isWorkRendered, menuOpen } from '../store';
 
 const variants = {
   visible: {
@@ -24,12 +24,14 @@ const variants = {
 function Hamburger(): JSX.Element {
   const [open, setOpen] = useRecoilState(menuOpen);
   const [zoomed, setZoomed] = useRecoilState(isRayZoomed);
+  const setWorkRendered = useSetRecoilState(isWorkRendered);
 
   return (
     <motion.div
       onClick={() => {
         setOpen(!open);
         setZoomed(!zoomed);
+        setWorkRendered(false);
       }}
       initial="hidden"
       animate="visible"

@@ -60,6 +60,18 @@ class World {
     this.ray.onZoomOut();
   }
 
+  planeTouchDown() {
+    this.planes.forEach((plane) => {
+      plane.onTouchDown(null);
+    });
+  }
+
+  planeTouchUp() {
+    this.planes.forEach((plane) => {
+      plane.onTouchUp(null);
+    });
+  }
+
   render() {
     this.renderer.render();
   }

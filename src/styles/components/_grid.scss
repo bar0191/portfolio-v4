@@ -1,4 +1,6 @@
 .grid {
+  pointer-events: none;
+
   &__shadow {
     content: '';
     display: block;

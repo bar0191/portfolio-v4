@@ -2,11 +2,18 @@ import * as React from 'react';
 import { debounce } from 'debounce';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { wrap, snap } from "popmotion";
+import { wrap, snap } from 'popmotion';
 import { useWindowSize, lerp, useScrollDirection } from '../util';
 import CarouselItem from './CarouselItem';
 
 const padding = 200;
+
+function getTranslateX(el) {
+  var style = window.getComputedStyle(el);
+  var matrix = new WebKitCSSMatrix(style.transform);
+  console.log('translateX: ', matrix.m41);
+  return matrix.m41;
+}
 
 function Carousel({ slides = [] }) {
   const controls = useAnimation();
@@ -16,10 +23,12 @@ function Carousel({ slides = [] }) {
   const [anchors, setAnchors] = useState([]);
   const [positions, setPositions] = useState([]);
   const [dragging, setDragging] = useState(false);
+  const [snapping, setSnapping] = useState(false);
   const [start, setStart] = useState(0);
   const [direction, setDirection] = useState(0);
   const [y, setY] = useState(0);
   const [itemWidth, setItemWidth] = useState(0);
+  const [init, setInit] = useState(false);
 
   const handleTouchStart = (event, info) => {
     setStart(info.point.x);
@@ -42,6 +51,8 @@ function Carousel({ slides = [] }) {
       anchors,
       padding,
       positions,
+      setSnapping,
+      setDirection,
     });
   }
 
@@ -72,19 +83,23 @@ function Carousel({ slides = [] }) {
       anchors,
       padding,
       positions,
+      setSnapping,
+      setDirection,
     }) => {
+      setSnapping(true);
       const snapToArbitraryDegrees = snap([...anchors]);
-      console.log('verified', [...anchors]);
-      const newY = lerp(y, direction, 1.4);
+      const elements = container.current.children;
+      const loc = getTranslateX(elements[0]);
+
+      setDirection(direction + (snapToArbitraryDegrees(loc) - loc));
+
       controls.start(({ index }) => {
         const wrapped = wrap(
           anchors[0] - ((itemWidth + padding) / 2),
           anchors[slides.length - 1] + ((itemWidth + padding) / 2),
-          positions[index] + newY
+          positions[index] + y
         )
         const snapped = snapToArbitraryDegrees(wrapped);
-
-        console.log([...anchors], wrapped);
 
         return {
           x: snapped,
@@ -93,9 +108,10 @@ function Carousel({ slides = [] }) {
             duration: 0.2,
           }
         }
-
       });
-    }, 100),
+      setTimeout(() => setSnapping(false), 100);
+
+    }, 150),
     []
   );
 
@@ -129,7 +145,7 @@ function Carousel({ slides = [] }) {
   }, [width]);
 
   useEffect(() => {
-    if (positions.length) {
+    if (positions.length && !snapping) {
       const newY = lerp(y, direction, 0.2);
       setY(newY);
       controls.start(({ index }) => {
@@ -151,7 +167,24 @@ function Carousel({ slides = [] }) {
     }
   }, [direction]);
 
-  useEffect(() => setDirection(direction + scrollValue), [scrollValue]);
+  useEffect(() => {
+    if (!init) {
+      setInit(true);
+    } else {
+      setDirection(direction + scrollValue);
+      // verify({
+      //   direction,
+      //   y,
+      //   slides,
+      //   itemWidth,
+      //   anchors,
+      //   padding,
+      //   positions,
+      //   setSnapping,
+      //   setDirection,
+      // });
+    }
+  }, [scrollValue]);
 
   return (
     <motion.div

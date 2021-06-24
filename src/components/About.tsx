@@ -8,7 +8,7 @@ import Link from './Link';
 
 const variants = {
   enter: {
-    y: 60,
+    y: 80,
     transition: {
       duration: 1,
       y: { stiffness: 1000 }
@@ -22,7 +22,7 @@ const variants = {
     }
   },
   exit: {
-    y: -60,
+    y: -80,
     transition: {
       duration: 0.3,
       y: { stiffness: 1000 }

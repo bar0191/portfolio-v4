@@ -65,6 +65,18 @@ function About(): JSX.Element {
     }
   }, [open]);
 
+  const sweetPics = [
+    'CBcS51cGoSw',
+    'feXpdV001o4',
+    'QwoNAhbmLLo',
+    'lhnOvu72BM8',
+    'arwTpnIUHdM',
+    'ineC_oi7NHs',
+    '71SHXwBLp5w',
+    'MFYlCoSm-0o'
+  ];
+
+  const randomPic = sweetPics[Math.floor(Math.random() * sweetPics.length)];
   return (
     <AnimatePresence>
         { !open &&  (
@@ -83,7 +95,7 @@ function About(): JSX.Element {
               />
             </section>
             <section className="page__image-placeholder">
-              <img src="https://source.unsplash.com/71SHXwBLp5w/1920x1080" alt='silence you fool' className='gl-about-scene' />
+              <img src={`https://source.unsplash.com/${randomPic}/1920x1080`} alt='silence you fool' className='gl-about-scene' />
             </section>
             <section className="page__section">
               <div className="page__paragraph about__paragraph">
@@ -120,7 +132,7 @@ function About(): JSX.Element {
                     variants={lineVariants}
                     className="page__tag"
                   >
-                    Coding Languages
+                    Years of Experience
                   </motion.div>
                   <motion.div
                     initial="enter"
@@ -140,7 +152,7 @@ function About(): JSX.Element {
                     variants={lineVariants}
                     className="page__tag"
                   >
-                    Years of Experience
+                    Project Contributions
                   </motion.div>
                   <motion.div
                     initial="enter"
@@ -149,12 +161,12 @@ function About(): JSX.Element {
                     variants={countVariants}
                     className="page__count"
                   >
-                    6
+                    27
                   </motion.div>
                 </div>
               </div>
             </section>
-            <section className="page__section">
+            {/* <section className="page__section">
               <div className="page__paragraph flexed">
                 <div className="page__cell">
                   <motion.div
@@ -207,7 +219,7 @@ function About(): JSX.Element {
                   </motion.ul>
                 </div>
               </div>
-            </section>
+            </section> */}
             <section className="page__head page__section flat last">
               <Headline
                 headline="Give me a shout if you like what you see. Let's build something cool together! 🚀"

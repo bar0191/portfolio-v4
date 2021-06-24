@@ -30,6 +30,17 @@ const isRayZoomed = atom({
   default: false,
 });
 
+const isLinkHover = atom({
+  key: 'isLinkHover',
+  default: false,
+});
+
+const isWorkRendered = atom({
+  key: 'isWorkRendered',
+  default: false,
+});
+
+
 export {
   isGlLoaded,
   menuOpen,
@@ -37,4 +48,6 @@ export {
   pageRendered,
   isPageGlLoaded,
   isRayZoomed,
+  isLinkHover,
+  isWorkRendered,
 }

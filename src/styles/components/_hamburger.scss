@@ -12,7 +12,7 @@
   height: 80px;
   width: 80px;
   border-radius: 50%;
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
 }
 
 .circle {
@@ -28,6 +28,10 @@
   z-index: 2;
   border-radius: 50%;
   animation: wave 2s linear infinite;
+
+  @media (max-width: 576px) {
+    border: none;
+  }
 }
 
 .circle::after {
@@ -45,6 +49,10 @@
   transform: rotate(45deg);
   animation: wave 2s linear infinite;
   animation-delay: 1s;
+
+  @media (max-width: 576px) {
+    border: none;
+  }
 }
 
 .circle::before {
@@ -61,6 +69,10 @@
   animation: wave2 2s linear infinite;
   animation-delay: 1s;
   transform: rotate(135deg);
+
+  @media (max-width: 576px) {
+    border: none;
+  }
 }
 
 @keyframes wave {
@@ -130,6 +142,12 @@
   height: 100px;
   position: fixed;
   z-index: 99;
+
+  @media (max-width: 576px) {
+    top: 50px;
+    right: 0;
+    left: unset;
+  }
 }
 
 #nav-button {

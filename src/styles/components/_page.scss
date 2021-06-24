@@ -10,6 +10,10 @@
     position: relative;
     z-index: 2;
 
+    @media (max-width: 576px) {
+      width: 89%;
+    }
+
     &.last {
       padding: 25vh 0 25vh 0;
     }
@@ -24,10 +28,27 @@
       height: 100%;
     }
 
+    &.works {
+      height: 100%;
+      margin-top: 16rem;
+      margin-bottom: 16rem;
+      width: 60%;
+
+      @media (max-width: 576px) {
+        width: 90%;
+        margin-top: 12rem;
+        margin-bottom: 12rem;
+      }
+    }
+
     & div > blockquote {
       color: white;
       font-size: 3vw;
       font-weight: 300;
+
+      @media (max-width: 576px) {
+        font-size: 9vw;
+      }
 
       & > span {
         display: inline-block;
@@ -54,6 +75,11 @@
     position: relative;
     border: 1px solid rgba(48, 48, 48, 1);
 
+    @media (max-width: 576px) {
+      width: 89%;
+      padding-top: 44%;
+    }
+
     & > img {
       height: 100%;
       width: 100%;
@@ -62,10 +88,20 @@
       left: 0;
       visibility: hidden;
     }
+
+    & > img.cover {
+      object-fit: cover;
+      visibility: visible;
+    }
   }
 
   &__paragraph {
     margin-top: 150px;
+
+    @media (max-width: 576px) {
+      margin-top: 75px;
+      flex-direction: column;
+    }
 
     &.flexed {
       display: flex;
@@ -74,6 +110,14 @@
 
   &__cell {
     width: 50%;
+
+    @media (max-width: 576px) {
+      width: 100%;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
   &__tag {
@@ -84,6 +128,10 @@
     line-height: 20px;
     border-left: 2px solid rgba(237, 237, 237, 1);
     box-sizing: border-box;
+
+    @media (max-width: 576px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__count {
@@ -94,6 +142,12 @@
     text-align: center;
     color: #f3f3f3;
     margin-top: 64px;
+
+    @media (max-width: 576px) {
+      margin-right: 12px;
+      font-size: 7vw;
+      margin-top: 0;
+    }
   }
 
   &__list {
