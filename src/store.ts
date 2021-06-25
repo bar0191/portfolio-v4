@@ -43,6 +43,40 @@ const isWorkRendered = atom({
   default: false,
 });
 
+const carouselDirection = atom({
+  key: 'carouselDirection',
+  default: 0,
+});
+
+const carouselY = atom({
+  key: 'carouselY',
+  default: 0,
+});
+
+const carouselStart = atom({
+  key: 'carouselStart',
+  default: 0,
+});
+
+const carouselItemWidth = atom({
+  key: 'carouselItemWidth',
+  default: 0,
+});
+
+const carouselPositions = atom({
+  key: 'carouselPositions',
+  default: [] as Array<number>,
+});
+
+const carouselAnchors = atom({
+  key: 'carouselAnchors',
+  default: [] as Array<number>,
+});
+
+const carouselInitialized = atom({
+  key: 'carouselInitialized',
+  default: false,
+});
 
 export {
   isGlLoaded,
@@ -53,4 +87,11 @@ export {
   isRayZoomed,
   isLinkHover,
   isWorkRendered,
+  carouselDirection,
+  carouselY,
+  carouselStart,
+  carouselItemWidth,
+  carouselPositions,
+  carouselAnchors,
+  carouselInitialized
 }

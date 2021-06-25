@@ -3,8 +3,17 @@ import { debounce } from 'debounce';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useAnimation, PanInfo } from 'framer-motion';
 import { wrap, snap } from 'popmotion';
+import { useRecoilState } from 'recoil';
 import { useWindowSize, lerp, useScrollDirection, getTranslateX } from '../util';
 import CarouselItem from './CarouselItem';
+import {
+  carouselAnchors,
+  carouselDirection, carouselInitialized,
+  carouselItemWidth,
+  carouselPositions,
+  carouselStart,
+  carouselY,
+} from '../store';
 
 const padding = 200;
 
@@ -43,15 +52,16 @@ function Carousel({ slides = [] }: CarouselPropTypes): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [width, height] = useWindowSize();
   const scrollValue = useScrollDirection();
-  const [anchors, setAnchors] = useState<Array<number>>([]);
-  const [positions, setPositions] = useState<Array<number>>([]);
+  const [anchors, setAnchors] = useRecoilState(carouselAnchors);
+  const [positions, setPositions] = useRecoilState(carouselPositions);
   const [dragging, setDragging] = useState(false);
   const [snapping, setSnapping] = useState(false);
-  const [start, setStart] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [y, setY] = useState(0);
-  const [itemWidth, setItemWidth] = useState(0);
-  const [init, setInit] = useState(false);
+  const [start, setStart] = useRecoilState(carouselStart);
+  const [direction, setDirection] = useRecoilState(carouselDirection);
+  const [y, setY] = useRecoilState(carouselY);
+  const [itemWidth, setItemWidth] = useRecoilState(carouselItemWidth);
+  const [init, setInit] = useRecoilState(carouselInitialized);
+  const [checked, setChecked] = useState(false);
 
   const toScale = (x: number) => {
     const distance = (itemWidth + padding) / 2;
@@ -146,7 +156,7 @@ function Carousel({ slides = [] }: CarouselPropTypes): JSX.Element {
 
   useEffect(() => {
     const elements: HTMLCollection | undefined = container?.current?.children;
-    if (elements) {
+    if (elements && !init) {
       const element = elements[0] as HTMLElement;
       const newPositions: Array<number> = [];
 
@@ -172,7 +182,43 @@ function Carousel({ slides = [] }: CarouselPropTypes): JSX.Element {
         setItemWidth(element.offsetWidth);
         setAnchors(newPositions);
         setPositions(newPositions);
-    }
+        setInit(true);
+      }
+    } else if (elements) {
+      const element = elements[0] as HTMLElement;
+      const newPositions: Array<number> = [];
+
+      const newWidth = element.offsetWidth;
+
+      const newStart = -1 * (newWidth + padding) * (slides.length / 2);
+
+      slides.forEach((slide, index) => {
+        newPositions.push(newStart + ((newWidth + padding) * index));
+      })
+
+      const snapToArbitraryDegrees = snap([...newPositions]);
+
+      controls.start(({ index }) => {
+        const wrapped = wrap(
+          anchors[0] - ((newWidth + padding) / 2),
+          anchors[slides.length - 1] + ((newWidth + padding) / 2),
+          positions[index] + y
+        )
+        const snapped = snapToArbitraryDegrees(wrapped);
+
+        return {
+          x: snapped,
+          scale: toScale(snapped),
+          transition: {
+            duration: 0,
+          }
+        }
+      });
+
+      setItemWidth(element.offsetWidth);
+      setAnchors(newPositions);
+      setPositions(newPositions);
+      setChecked(true);
     }
     // eslint-disable-next-line
   }, [width]);
@@ -202,9 +248,7 @@ function Carousel({ slides = [] }: CarouselPropTypes): JSX.Element {
   }, [direction]);
 
   useEffect(() => {
-    if (!init) {
-      setInit(true);
-    } else {
+    if (init && checked) {
       setDirection(direction + scrollValue);
     }
     // eslint-disable-next-line

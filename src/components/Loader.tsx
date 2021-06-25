@@ -16,18 +16,17 @@ function Loader(): JSX.Element {
     animate({
       from: dash,
       to: 0,
-      duration: 2300,
+      duration: 2500,
       ease: easeIn,
       onUpdate: latest => setDash(latest)
     })
 
-    animate({
-      from: y,
-      to: 35,
-      duration: 2600,
-      ease: easeIn,
-      onUpdate: latest => setY(latest)
-    })
+    // animate({
+    //   from: y,
+    //   to: 35,
+    //   duration: 2600,
+    //   onUpdate: latest => setY(latest)
+    // })
 
     // eslint-disable-next-line
   }, []);
@@ -48,16 +47,16 @@ function Loader(): JSX.Element {
 
       <defs>
         <clipPath id="clipping">
-          <text style={{ fontSize: '10vw' }} x="30%"  id="svgTextOne" fontWeight="bold"
-                textAnchor="start" className="svgText" y="52%"
+          <text style={{ fontSize: '10vw', letterSpacing: 0 }} x="30%"  id="svgTextOne" fontWeight="bold"
+                className="svgText" y="52%" width="100px" letterSpacing="0"
                 fill="none">LOADING
           </text>
         </clipPath>
       </defs>
 
       <g filter="url(#filter)">
-        <text style={{ strokeDashoffset: dash, fontSize: '10vw' }} x="30%" id="svgTextTwo" fontWeight="bold"
-              textAnchor="start" className="svgText" y="52%" fill="none"
+        <text style={{ strokeDashoffset: dash, fontSize: '10vw', letterSpacing: 0 }} x="30%" id="svgTextTwo" fontWeight="bold"
+              className="svgText" y="52%" fill="none" letterSpacing="0" width="100px"
               stroke="#f3f3f3" strokeWidth="2">LOADING
         </text>
 

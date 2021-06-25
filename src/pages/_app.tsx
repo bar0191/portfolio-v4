@@ -39,7 +39,7 @@ function AppWrapper({ Component, pageProps }: AppProps) : JSX.Element {
     if (isLoaded) {
       setTimeout(() => {
         setInit(true);
-      }, 2600);
+      }, 2500);
     }
   }, [isLoaded]);
 
