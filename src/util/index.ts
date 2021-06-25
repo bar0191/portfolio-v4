@@ -42,8 +42,12 @@ function useScrollDirection(): number {
 
   useEffect(() => {
     window.addEventListener("mousewheel", handleScroll);
+    window.addEventListener("DOMMouseScroll", handleScroll);
     // window.addEventListener("touchmove", handleScroll);
-    return () => window.removeEventListener("mousewheel", handleScroll);
+    return () => {
+      window.removeEventListener("mousewheel", handleScroll);
+      window.removeEventListener("DOMMouseScroll", handleScroll);
+    }
   }, [direction]);
 
   return direction;
