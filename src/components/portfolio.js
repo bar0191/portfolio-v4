@@ -73,4 +73,5 @@ const portfolio = [{
 },
 ]
 
+// eslint-disable-next-line import/prefer-default-export
 export { portfolio };
