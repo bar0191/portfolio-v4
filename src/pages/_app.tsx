@@ -3,6 +3,7 @@ import '../styles/styles.scss';
 import type { AppProps } from 'next/app';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import Head from 'next/head';
+import Script from 'next/script';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import dynamic from 'next/dynamic'
 import Grid from '../components/Grid';
@@ -89,6 +90,17 @@ function AppRoute(props: AppProps): JSX.Element {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
       </Head>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-0VKS8XYC6H" />
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-0VKS8XYC6H');
+            `
+        }}
+      />
       <div id="scene-container" />
       <div className="cursor" />
       <div id="cursor">

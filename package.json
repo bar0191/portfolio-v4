@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "lint:watch":  "esw src --ext .ts,.tsx"
+    "lint:watch": "esw src --ext .ts,.tsx"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": "npm run lint:fix"
@@ -25,13 +25,13 @@
     "debounce": "^1.2.1",
     "framer-motion": "^4.1.17",
     "glslify-loader": "^2.0.0",
-    "next": "10.2.3",
+    "next": "^11.1.0",
     "next-images": "^1.8.1",
     "normalize-wheel": "^1.0.1",
     "popmotion": "^9.3.6",
     "raw-loader": "^4.0.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-intersection-observer": "^8.32.0",
     "recoil": "^0.3.1",
     "sass": "^1.34.0",
