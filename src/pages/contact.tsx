@@ -2,8 +2,6 @@ import * as React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import Headline from '../components/Headline';
-import SubtextSlider from '../components/SubtextSlider';
-import Link from '../components/Link';
 import { isLanding, menuOpen, pageRendered } from '../store';
 import SocialLink from '../components/SocialLink';
 
@@ -30,7 +28,7 @@ const variants = {
   }
 }
 
-function Contact() {
+function Contact(): JSX.Element {
   const setRendered = useSetRecoilState(pageRendered);
   const setLanded = useSetRecoilState(isLanding);
   const open = useRecoilValue(menuOpen);
@@ -38,12 +36,14 @@ function Contact() {
   React.useEffect(() => {
     setLanded(true);
     setRendered({ page: 'contact', seed: Math.random() });
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     if (!open) {
       setRendered({ page: 'contact', seed: Math.random() });
     }
+    // eslint-disable-next-line
   }, [open]);
 
   return (
@@ -65,6 +65,7 @@ function Contact() {
               className="social"
               variants={variants}
             >
+              <SocialLink type='dribbble' url='/images/dribbble.png' />
               <SocialLink type='github' url='/images/github-6-64.png' />
               <SocialLink type='linkedin' url='/images/linkedin-64.png' />
             </motion.div>

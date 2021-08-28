@@ -51,9 +51,11 @@ function SocialLink({ url, type }: SocialLinkTypes): JSX.Element {
   const getUrl = () => {
     switch (type) {
       case 'github':
-        return 'https://github.com/bar0191';
+        return 'https://github.com/xbreid';
       case 'linkedin':
         return 'https://www.linkedin.com/in/brandon-reid/';
+      case 'dribbble':
+        return 'https://b-reid.dribbble.com/';
       default:
         return '#';
     }

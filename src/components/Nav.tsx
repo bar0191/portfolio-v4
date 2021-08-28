@@ -25,6 +25,7 @@ function Nav(): JSX.Element {
             <NavItem href='/' label='Home' />
             <NavItem href='/about' label='About' />
             <NavItem href='/work' label='Work' />
+            <NavItem href='https://b-reid.dribbble.com/' label='3D Art' />
             <NavItem href='/contact' label='Contact' />
           </motion.ul>
         </motion.nav>
