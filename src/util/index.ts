@@ -32,6 +32,42 @@ function useHeightListener(initialHeight: number): number {
   return height;
 }
 
+function useDetectTrackpad(): boolean {
+  const [isTrackpad, setIsTrackpad] = useState(false);
+
+  const detectTrackpad = (event: Event) => {
+    let isTrackpad = false;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (event.wheelDeltaY) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      if (Math.abs(event.wheelDeltaY) !== 120) {
+        isTrackpad = true;
+      }
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    else if (event.deltaMode === 0) {
+      isTrackpad = true;
+    }
+
+    setIsTrackpad(isTrackpad);
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousewheel", detectTrackpad);
+    window.addEventListener("DOMMouseScroll", detectTrackpad);
+    // window.addEventListener("touchmove", handleScroll);
+    return () => {
+      window.removeEventListener("mousewheel", detectTrackpad);
+      window.removeEventListener("DOMMouseScroll", detectTrackpad);
+    }
+  }, [isTrackpad]);
+
+  return isTrackpad;
+}
+
 function useScrollDirection(): number {
   const [direction, setDirection] = useState(0);
 
@@ -43,7 +79,7 @@ function useScrollDirection(): number {
   useEffect(() => {
     window.addEventListener("mousewheel", handleScroll);
     window.addEventListener("DOMMouseScroll", handleScroll);
-    // window.addEventListener("touchmove", handleScroll);
+    window.addEventListener("touchmove", handleScroll);
     return () => {
       window.removeEventListener("mousewheel", handleScroll);
       window.removeEventListener("DOMMouseScroll", handleScroll);
@@ -70,4 +106,5 @@ export {
   useScrollDirection,
   lerp,
   getTranslateX,
+  useDetectTrackpad,
 }

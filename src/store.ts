@@ -93,5 +93,5 @@ export {
   carouselItemWidth,
   carouselPositions,
   carouselAnchors,
-  carouselInitialized
+  carouselInitialized,
 }

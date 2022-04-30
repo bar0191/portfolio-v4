@@ -64,13 +64,6 @@ vec3 getNormal(vec3 p){
         )
     );
 }
-
-vec3 GetColor(float amount) {
-    vec3 col = 0.5 + 0.5 * cos(6.28319 * (vec3(0.2, 0.0, 0.0) + amount * vec3(1.0, 1.0, 0.5)));
-
-    return col * amount;
-}
-
 vec3 GetColorAmount(vec3 p) {
 
     float amount = clamp((1.5 - length(p))/2.0, 0.0, 1.0);
@@ -81,7 +74,7 @@ vec3 GetColorAmount(vec3 p) {
 }
 
 void main()	{
-    vec2 newUV = (vUv - vec2(0.5))*resolution.zw + vec2(0.5);
+    vec2 newUV = (vUv - vec2(0.5)) * resolution.zw + vec2(0.5);
     newUV = newUV - vec2(0.5);
 
     newUV.x -= mouse.x*0.05;
@@ -104,7 +97,7 @@ void main()	{
 
     for(int i=0; i<=64; i++){
         curDist = scene(rayPos);
-        rayLen += 0.6*curDist;
+        rayLen += 0.6 * curDist;
 
         rayPos = camPos + ray*rayLen;
 

@@ -96,7 +96,7 @@ function About(): JSX.Element {
                   className="page__cell about__me"
                 >
                   A jack of all trades, specializing in modern web app and creative development based
-                  out of Richmond, Virginia. With a passion in all things aesthetically pleasing. I focus
+                  out of Salzburg, Austria. With a passion in all things aesthetically pleasing. I focus
                   on cutting edge digital paradigms with rich motion, visual, and web experiences.
                   <Link
                     href="/work"
@@ -129,7 +129,7 @@ function About(): JSX.Element {
                     variants={countVariants}
                     className="page__count"
                   >
-                    5
+                    6
                   </motion.div>
                 </div>
                 <div className="page__cell">
@@ -149,7 +149,7 @@ function About(): JSX.Element {
                     variants={countVariants}
                     className="page__count"
                   >
-                    27
+                    32
                   </motion.div>
                 </div>
               </div>

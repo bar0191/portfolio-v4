@@ -29,5 +29,9 @@
     @media (max-width: 576px) {
       height: 45px;
     }
+
+    @media (min-width: 2000px) {
+      height: 102px;
+    }
   }
 }

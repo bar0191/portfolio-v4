@@ -8,7 +8,7 @@ import Work from './Work';
 import Contact from './Contact';
 import { isLanding, menuOpen } from '../store';
 import SliderCounter from './SliderCounter';
-import { useScrollDirection, useHeightListener } from '../util';
+import { useScrollDirection, useHeightListener, useDetectTrackpad } from '../util';
 
 interface SliderProps {
   height: number
@@ -17,6 +17,7 @@ interface SliderProps {
 function Slider({  height }: SliderProps): JSX.Element {
   const slideLength = 4;
   const direction = useScrollDirection();
+  const isTrackpad = useDetectTrackpad();
   const windowHeight = useHeightListener(height);
   const [index, setIndex] = useState(1);
   const [traverse, setTraverse] = useState(false);
@@ -73,7 +74,10 @@ function Slider({  height }: SliderProps): JSX.Element {
               setIndex(0);
             }
             runAnimation = false;
-            setTraverse(false);
+            setTimeout(() => {
+              setTraverse(false);
+            }, isTrackpad ? 1000 : 300);
+
           },
         })
       } else if (runAnimation && variation === 0) {
@@ -87,7 +91,9 @@ function Slider({  height }: SliderProps): JSX.Element {
           onUpdate: (v) => setPosition(v),
           onComplete: () => {
             runAnimation = false;
-            setTraverse(false);
+            setTimeout(() => {
+              setTraverse(false);
+            }, isTrackpad ? 1000 : 300);
           },
         })
       }
