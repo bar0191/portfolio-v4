@@ -83,8 +83,9 @@ function AppRoute(props: AppProps): JSX.Element {
     <AnimateSharedLayout>
       <Head>
         <title>Brandon Reid - Portfolio</title>
+        <meta property="og:image" content="https://avatars.githubusercontent.com/u/24726378?v=4" />
         <meta name="description" content="Brandon Reid is a jack of all trades, specializing in modern
-        web app and creative development based out of Richmond, Virginia." />
+        web app and creative development based out of Salzburg, Austria." />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preload" href="/fonts/Odachi.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
