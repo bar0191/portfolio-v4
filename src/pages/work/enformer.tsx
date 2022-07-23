@@ -69,7 +69,7 @@ function Enformer(): JSX.Element {
               quote={false}
             />
             <span className="slider__ruler-top still" />
-            <Link
+            {/* <Link
               href="https://enformer.co/"
               label="View Site"
               swap
@@ -77,7 +77,7 @@ function Enformer(): JSX.Element {
               blank
               page={false}
               center={false}
-            />
+            /> */}
           </section>
           <section className="page__image-placeholder">
             <img src="https://source.unsplash.com/uPp_9j4pJJE/1920x1080" alt='silence you fool' className='gl-about-scene' />

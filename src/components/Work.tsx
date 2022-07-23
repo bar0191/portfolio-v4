@@ -77,14 +77,14 @@ function Work({ landed = false }: WorkPropTypes): JSX.Element {
             <SubtextSlider
               swapped
               slides={[
-                'creating.',
-                'developing.',
-                'web design.',
-                'ux design.',
-                'pixel art.',
-                'good food.',
+                'Full Stacks.',
+                'Bleeding Edge Tech.',
+                'Javascript.',
+                'Three JS.',
+                'Blender.',
+                'Unreal Engine.',
               ]}
-              label="Passion for"
+              label="I work with"
               still={false}
             />
           </>

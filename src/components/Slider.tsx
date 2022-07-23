@@ -14,7 +14,7 @@ interface SliderProps {
   height: number
 }
 
-function Slider({  height }: SliderProps): JSX.Element {
+function Slider({ height }: SliderProps): JSX.Element {
   const slideLength = 4;
   const direction = useScrollDirection();
   const isTrackpad = useDetectTrackpad();

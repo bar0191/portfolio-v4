@@ -84,8 +84,9 @@ function AppRoute(props: AppProps): JSX.Element {
       <Head>
         <title>Brandon Reid - Portfolio</title>
         <meta property="og:image" content="https://avatars.githubusercontent.com/u/24726378?v=4" />
-        <meta name="description" content="Brandon Reid is a jack of all trades, specializing in modern
-        web app and creative development based out of Salzburg, Austria." />
+        <meta name="description" content="Brandon Reid is a jack of all trades, specializing in software engineering, web and creative development based out of Salzburg, Austria." />
+        <meta name="keywords" content="Software, Engineering, Freelance, Developer, Javascript, React, Three JS, Javascript, Rails, 3D, Web, Dev" />
+        <meta name="author" content="Brandon Reid" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preload" href="/fonts/Odachi.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />

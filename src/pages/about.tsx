@@ -48,7 +48,6 @@ function About(): JSX.Element {
     'QwoNAhbmLLo',
     'lhnOvu72BM8',
     'arwTpnIUHdM',
-    'ineC_oi7NHs',
     '71SHXwBLp5w',
     'MFYlCoSm-0o'
   ];

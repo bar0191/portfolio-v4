@@ -58,10 +58,11 @@ function useDetectTrackpad(): boolean {
   useEffect(() => {
     window.addEventListener("mousewheel", detectTrackpad);
     window.addEventListener("DOMMouseScroll", detectTrackpad);
-    // window.addEventListener("touchmove", handleScroll);
+    // window.addEventListener("touchmove", detectTrackpad);
     return () => {
       window.removeEventListener("mousewheel", detectTrackpad);
       window.removeEventListener("DOMMouseScroll", detectTrackpad);
+      /// window.addEventListener("touchmove", detectTrackpad);
     }
   }, [isTrackpad]);
 
@@ -70,19 +71,44 @@ function useDetectTrackpad(): boolean {
 
 function useScrollDirection(): number {
   const [direction, setDirection] = useState(0);
+  let start: Touch | null;
 
-  const handleScroll = (event: Event) => {
+  const handleScroll = (event: Event | TouchEvent) => {
     const normalized = normalizeWheel(event);
+
     setDirection(normalized.pixelY + Math.random() * (0.01 - 0.001) + 0.001);
   };
+
+  const handleTouchStart = (event: TouchEvent) => {
+    // eslint-disable-next-line prefer-destructuring
+    start = event.changedTouches[0];
+  }
+
+  const handleTouchEnd = (event: TouchEvent) => {
+    const end: Touch = event.changedTouches[0];
+
+    if (!start) return;
+
+    if (end.screenY - start.screenY > 0) {
+      setDirection(-1 + Math.random() * (0.01 - 0.001) + 0.001);
+    }
+    else if (end.screenY - start.screenY < 0) {
+      setDirection(1 + Math.random() * (0.01 - 0.001) + 0.001);
+    }
+  }
 
   useEffect(() => {
     window.addEventListener("mousewheel", handleScroll);
     window.addEventListener("DOMMouseScroll", handleScroll);
-    window.addEventListener("touchmove", handleScroll);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+    // window.addEventListener("touchmove", handleScroll);
     return () => {
       window.removeEventListener("mousewheel", handleScroll);
       window.removeEventListener("DOMMouseScroll", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+      // window.removeEventListener("touchmove", handleScroll);
     }
   }, [direction]);
 

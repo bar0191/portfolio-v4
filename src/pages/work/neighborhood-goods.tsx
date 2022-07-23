@@ -60,7 +60,7 @@ function Neighborhood(): JSX.Element {
               email={false}
             />
             <span className="slider__ruler-top still" />
-            <Link
+            {/* <Link
               href="https://neighborhoodgoods.com/"
               label="View Site"
               swap
@@ -68,7 +68,7 @@ function Neighborhood(): JSX.Element {
               blank
               page={false}
               center={false}
-            />
+            /> */}
           </section>
           <section className="page__image-placeholder">
             <img src="https://source.unsplash.com/P3pI6xzovu0/1920x1080" alt='silence you fool' className='gl-about-scene' />

@@ -59,7 +59,7 @@ function Contact({ landed = false }: ContactPropTypes): JSX.Element {
                 custom={init}
                 className="landing__h1"
               >
-                Hi! Let&#39;s chat.
+                Let&#39;s chat.
               </motion.h1>
             </div>
             <Link

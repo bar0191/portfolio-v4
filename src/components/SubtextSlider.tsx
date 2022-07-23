@@ -7,8 +7,8 @@ import { useRecoilValue } from 'recoil';
 import { menuOpen } from '../store';
 
 const itemVariants = {
-  open: { x: 0.01, opacity: 1, transition: { x: { stiffness: 1000 }}},
-  closed: { x: 50, opacity: 0, transition: { x: { stiffness: 1000 } } }
+  open: { x: 0.01, opacity: 1 },
+  closed: { x: 50, opacity: 0 }
 };
 
 const staggerVariants = {

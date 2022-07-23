@@ -64,7 +64,7 @@ function Landing(): JSX.Element {
           'wish you well.',
         ]}
         label="I"
-        swapped={false}
+        swapped
         still={false}
       />
     </section>

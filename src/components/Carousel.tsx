@@ -156,6 +156,7 @@ function Carousel({ slides = [] }: CarouselPropTypes): JSX.Element {
 
   useEffect(() => {
     const elements: HTMLCollection | undefined = container?.current?.children;
+
     if (elements && !init) {
       const element = elements[0] as HTMLElement;
       const newPositions: Array<number> = [];
@@ -221,7 +222,7 @@ function Carousel({ slides = [] }: CarouselPropTypes): JSX.Element {
       setChecked(true);
     }
     // eslint-disable-next-line
-  }, [width]);
+  }, [width, init]);
 
   useEffect(() => {
     if (positions.length && !snapping) {

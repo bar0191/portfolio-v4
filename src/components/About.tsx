@@ -81,7 +81,7 @@ function About({ landed = false }: AboutPropTypes): JSX.Element {
             <Link
               href="/about"
               label="About me"
-              swap={false}
+              swap
               blank={false}
               center={false}
               headline={false}
@@ -98,7 +98,7 @@ function About({ landed = false }: AboutPropTypes): JSX.Element {
                 'good food.',
               ]}
               label="Passion for"
-              swapped={false}
+              swapped
               still={false}
             />
           </>

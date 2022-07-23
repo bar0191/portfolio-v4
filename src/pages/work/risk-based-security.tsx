@@ -59,7 +59,7 @@ function rbs(): JSX.Element {
               quote={false}
             />
             <span className="slider__ruler-top still" />
-            <Link
+            {/* <Link
               href="https://www.riskbasedsecurity.com/"
               label="View Site"
               swap
@@ -67,7 +67,7 @@ function rbs(): JSX.Element {
               blank
               page={false}
               center={false}
-            />
+            /> */}
           </section>
           <section className="page__image-placeholder">
             <img src="https://source.unsplash.com/1lfI7wkGWZ4/1920x1080" alt='silence you fool' className='gl-about-scene' />

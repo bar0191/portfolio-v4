@@ -59,7 +59,7 @@ function Mobelux(): JSX.Element {
               quote={false}
             />
             <span className="slider__ruler-top still" />
-            <Link
+            {/* <Link
               href="https://mobelux.com/"
               label="View Site"
               swap
@@ -67,7 +67,7 @@ function Mobelux(): JSX.Element {
               blank
               page={false}
               center={false}
-            />
+            /> */}
           </section>
           <section className="page__image-placeholder">
             <img src="https://mortycms.imgix.net/store/46ceee655212fee646c53326588a956b.jpg?ixlib=rb-1.1.0&w=1920" alt='silence you fool' className='gl-about-scene' />

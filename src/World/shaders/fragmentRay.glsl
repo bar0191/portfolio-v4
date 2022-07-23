@@ -32,6 +32,10 @@ float sphere(vec3 p) {
     return length(p) - 0.5;
 }
 
+float SineEggCarton(vec3 p) {
+    return 0.0 + abs(sin(p.x) - cos(p.y) + sin(p.z)) * 1.2;
+}
+
 float SineCrazy(vec3 p) {
     return 1.0 - (sin(p.x) + sin(p.y) + sin(p.z)) / 3.0;
 }
