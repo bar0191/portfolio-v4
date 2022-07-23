@@ -73,8 +73,8 @@ function Headline(props: HeadlinePropTypes): JSX.Element {
         <Tags data={tags} />
       )}
       { email && (
-        <motion.a className="email-link" variants={emailVariants} href='mailto:brandonareid2@gmail.com'>
-          brandonareid2@gmail.com
+        <motion.a className="email-link" variants={emailVariants} href='mailto:info@brandonreid.io'>
+          info@brandonreid.io
         </motion.a>
       )}
     </motion.div>
