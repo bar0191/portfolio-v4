@@ -31,12 +31,16 @@ async function renderer(world) {
 async function renderAbout() {
   const el = document.querySelector('.gl-about-scene');
 
+  if (!el) return;
+
   await controller.initPlane(el);
 }
 
 // async function to render about page scenes
 async function renderSlides() {
   const els = document.querySelectorAll('.gl-slide-scene');
+
+  if (!els) return;
 
   await controller.initSlides(els);
 }
@@ -57,8 +61,10 @@ function renderGL({ router }) {
     if (!controller || rendered?.page !== 'home') return null;
     if (open && !zoomed) {
       controller.rayZoomIn();
+      setZoomed(true);
     } else {
       controller.rayZoomOut();
+      setZoomed(false);
     }
   }, [open]);
 
