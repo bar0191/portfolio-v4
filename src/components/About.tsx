@@ -44,6 +44,12 @@ function About({ landed = false }: AboutPropTypes): JSX.Element {
         setInit(true);
       }, 800);
     }
+
+    if (!landed && init) {
+      setTimeout(() => {
+        setInit(false);
+      }, 800);
+    }
     // eslint-disable-next-line
   }, [landed]);
 
@@ -62,7 +68,7 @@ function About({ landed = false }: AboutPropTypes): JSX.Element {
                     custom={init}
                     variants={variants}
                   >
-                    I am a Creative <br/>
+                    I&#39;m a Software <br/>
                   </motion.span>
                 </span>
                 <span className="about__label">
@@ -73,7 +79,7 @@ function About({ landed = false }: AboutPropTypes): JSX.Element {
                     custom={init}
                     variants={variants}
                   >
-                    Developer.
+                    Engineer.
                   </motion.span>
                 </span>
               </h1>

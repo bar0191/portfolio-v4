@@ -44,6 +44,12 @@ function Work({ landed = false }: WorkPropTypes): JSX.Element {
         setInit(true);
       }, 500);
     }
+
+    if (!landed && init) {
+      setTimeout(() => {
+        setInit(false);
+      }, 500);
+    }
     // eslint-disable-next-line
   }, [landed]);
 

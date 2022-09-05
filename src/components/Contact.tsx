@@ -42,6 +42,10 @@ function Contact({ landed = false }: ContactPropTypes): JSX.Element {
     if (landed && !init) {
       setTimeout(() => setInit(true), 500);
     }
+
+    if (!landed && init) {
+      setTimeout(() => setInit(false), 500);
+    }
     // eslint-disable-next-line
   }, [landed]);
 

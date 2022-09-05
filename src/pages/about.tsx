@@ -94,8 +94,8 @@ function About(): JSX.Element {
                   variants={lineVariants}
                   className="page__cell about__me"
                 >
-                  A jack of all trades, specializing in modern web app and creative development based
-                  out of Salzburg, Austria. With a passion in all things aesthetically pleasing. I focus
+                  A software engineer and jack of all trades, specializing in modern web apps and creative development based
+                  out of Salzburg, Austria. With a passion in all things tech. I focus
                   on cutting edge digital paradigms with rich motion, visual, and web experiences.
                   <Link
                     href="/work"
