@@ -25,8 +25,8 @@ function useHeightListener(initialHeight: number): number {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [height]);
 
   return height;
@@ -56,14 +56,14 @@ function useDetectTrackpad(): boolean {
   };
 
   useEffect(() => {
-    window.addEventListener("mousewheel", detectTrackpad);
-    window.addEventListener("DOMMouseScroll", detectTrackpad);
+    window.addEventListener('mousewheel', detectTrackpad);
+    window.addEventListener('DOMMouseScroll', detectTrackpad);
     // window.addEventListener("touchmove", detectTrackpad);
     return () => {
-      window.removeEventListener("mousewheel", detectTrackpad);
-      window.removeEventListener("DOMMouseScroll", detectTrackpad);
+      window.removeEventListener('mousewheel', detectTrackpad);
+      window.removeEventListener('DOMMouseScroll', detectTrackpad);
       /// window.addEventListener("touchmove", detectTrackpad);
-    }
+    };
   }, [isTrackpad]);
 
   return isTrackpad;
@@ -82,7 +82,7 @@ function useScrollDirection(): number {
   const handleTouchStart = (event: TouchEvent) => {
     // eslint-disable-next-line prefer-destructuring
     start = event.changedTouches[0];
-  }
+  };
 
   const handleTouchEnd = (event: TouchEvent) => {
     const end: Touch = event.changedTouches[0];
@@ -91,33 +91,30 @@ function useScrollDirection(): number {
 
     if (end.screenY - start.screenY > 0) {
       setDirection(-1 + Math.random() * (0.01 - 0.001) + 0.001);
-    }
-    else if (end.screenY - start.screenY < 0) {
+    } else if (end.screenY - start.screenY < 0) {
       setDirection(1 + Math.random() * (0.01 - 0.001) + 0.001);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("mousewheel", handleScroll);
-    window.addEventListener("DOMMouseScroll", handleScroll);
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener('mousewheel', handleScroll);
+    window.addEventListener('DOMMouseScroll', handleScroll);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
     // window.addEventListener("touchmove", handleScroll);
     return () => {
-      window.removeEventListener("mousewheel", handleScroll);
-      window.removeEventListener("DOMMouseScroll", handleScroll);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener('mousewheel', handleScroll);
+      window.removeEventListener('DOMMouseScroll', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
       // window.removeEventListener("touchmove", handleScroll);
-    }
+    };
   }, [direction]);
 
   return direction;
 }
 
-const lerp = (v0: number, v1: number, t: number): number => {
-  return v0 * ( 1 - t ) + v1 * t;
-}
+const lerp = (v0: number, v1: number, t: number): number => v0 * (1 - t) + v1 * t;
 
 function getTranslateX(el: Element): number {
   const style = window.getComputedStyle(el);
@@ -133,4 +130,4 @@ export {
   lerp,
   getTranslateX,
   useDetectTrackpad,
-}
+};
